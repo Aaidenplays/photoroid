@@ -3,7 +3,7 @@ class CreateBoards < ActiveRecord::Migration[6.0]
     create_table :boards do |t|
       t.string :description
       t.string :title
-      t.string :image_id
+      t.string :media_id
 
       t.timestamps
     end
