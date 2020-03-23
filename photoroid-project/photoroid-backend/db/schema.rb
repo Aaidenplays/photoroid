@@ -10,19 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_23_195802) do
+ActiveRecord::Schema.define(version: 2020_03_23_205234) do
+
+  create_table "boards", force: :cascade do |t|
+    t.string "description"
+    t.string "title"
+    t.string "image_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "media"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "friend_requests", force: :cascade do |t|
+    t.integer "requestor_id"
+    t.integer "receiver_id"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "friends", force: :cascade do |t|
+  create_table "media", force: :cascade do |t|
+    t.string "title"
+    t.string "likes"
+    t.integer "board"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "friendships", force: :cascade do |t|
+  create_table "user_boards", force: :cascade do |t|
+    t.string "status"
+    t.integer "user"
+    t.integer "board"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

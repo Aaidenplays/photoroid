@@ -7,10 +7,7 @@ class User < ApplicationRecord
         foreign_key: :receiver_id,
         class_name: :FriendRequest
    
-    has_many :friendships, -> (user){
-    where("friend_a_id = ? OR friend_b_id = ?", 
-    user.id, user.id) 
-    }
+    has_many :user_boards 
+    has_many :boards, through: :user_boards
 
-    has_many :friends, through: :friendships
 end
