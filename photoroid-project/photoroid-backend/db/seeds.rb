@@ -8,4 +8,7 @@
 
 
 
-User.create(name:"Aaiden") 
+u1 = User.create(name:"Aaiden", bio: "bleh") 
+u2 = User.create(name:"Jack", bio: "blah") 
+
+FriendRequest.create(requestor: u1, receiver: u2, status: "pending")

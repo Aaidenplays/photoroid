@@ -13,6 +13,9 @@
 ActiveRecord::Schema.define(version: 2020_03_23_195802) do
 
   create_table "friend_requests", force: :cascade do |t|
+    t.integer "requestor_id"
+    t.integer "receiver_id"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
