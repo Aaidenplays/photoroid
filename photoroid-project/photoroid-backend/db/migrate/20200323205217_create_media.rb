@@ -3,7 +3,7 @@ class CreateMedia < ActiveRecord::Migration[6.0]
     create_table :media do |t|
       t.string :title
       t.string :likes
-      t.integer :board
+      t.integer :board_id
 
       t.timestamps
     end

@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 2020_03_23_205234) do
   create_table "boards", force: :cascade do |t|
     t.string "description"
     t.string "title"
-    t.string "image_id"
+    t.string "media_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
-    t.integer "media"
+    t.integer "media_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,15 +38,15 @@ ActiveRecord::Schema.define(version: 2020_03_23_205234) do
   create_table "media", force: :cascade do |t|
     t.string "title"
     t.string "likes"
-    t.integer "board"
+    t.integer "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_boards", force: :cascade do |t|
     t.string "status"
-    t.integer "user"
-    t.integer "board"
+    t.integer "user_id"
+    t.integer "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
