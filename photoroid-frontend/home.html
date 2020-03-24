@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <h3>Login to Photoroid</h3>
-    <button id='new-login'>New User</button>
+    <h3>Login to Photoroid</h3><br>
+    <button id='user-login'>Sign in</button>
     <br>
-    <button id='user-login'>Returning User</button>
+
 
 </head>
 <body>
+  <h3>New User Sign Up</h3>
   <div id='new-user'>
     <p id='total-users'>
 
     </p>
+
+    <form id='new-login'>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name"><br>
+      <label for="bio">Bio:</label>
+      <textarea id='bio' name='bio' rows ='10' cols='30'></textarea>
+      <br>
+      <input type='submit' value='Submit'>
+    </form>
+    <br>
+
+    <p> Have an Account already? </P>
+    <button id='user-login'>Sign in</button>
   </div>
 
   <div id='user-container'>
