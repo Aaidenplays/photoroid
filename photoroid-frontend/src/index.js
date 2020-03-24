@@ -2,30 +2,32 @@ let totalUsers;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
       loadFriends();
-el('new-login').addEventListener('click', ()=>{
-console.log('You clicked the button')
-      let div = el('new-user');
-      div.innerHTML = `<form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" name="password"><br>
-        <label for="confirmPassword">Confirm Password</label><br>
-        <input type="text" id="confirmPassword" name="confirmPassword">
-        <input type='submit' value='Submit'>
-                      </form>`;
+el('new-login').addEventListener('submit', (event)=>{
+  event.preventDefault()
 
-                      
+    let newName = event.target.children[1].value;
+    let newBio = event.target.children[4].value;
+      let newUser = {
+        method: 'POST',
+        headers: {
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: newName,
+          bio: newBio
+        })
+      };
+      createUser(newUser);
 
-                    });
-el('user-login').addEventListener('click', ()=>{
+  });
+el('user-login').addEventListener('click', (event)=>{
       console.log('You clicked the button')
       let div = el('new-user');
       div.innerHTML = `<form>
-        <label for="name">Name:</label><br>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" name="password">
+
         <input type='submit' value='Submit'>
                       </form>`;
 
@@ -54,4 +56,8 @@ function loadFriends(){
 }
 function el(id){
   return document.getElementById(id);
+}
+function createUser(userObj){
+
+  fetch('http:localhost:3000/users',userObj)
 }
