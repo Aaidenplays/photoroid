@@ -1779,3 +1779,634 @@ Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 1357)
   [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/users" for ::1 at 2020-03-24 10:42:47 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 30ms (Views: 9.7ms | ActiveRecord: 1.6ms | Allocations: 7663)
+
+
+Started GET "/users" for ::1 at 2020-03-24 10:43:07 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 1374)
+
+
+Started GET "/users" for ::1 at 2020-03-24 10:43:26 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 1374)
+
+
+Started GET "/users" for ::1 at 2020-03-24 10:51:48 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 1386)
+
+
+Started GET "/users" for ::1 at 2020-03-24 10:52:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1374)
+
+
+Started GET "/users" for ::1 at 2020-03-24 12:05:32 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: 23.1ms | ActiveRecord: 1.0ms | Allocations: 1374)
+
+
+Started GET "/users" for ::1 at 2020-03-24 12:05:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 24.7ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:05:44 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:05:44 -0500
+Processing by UsersController#show as */*
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.7ms | Allocations: 1415)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 404 Not Found in 90ms (ActiveRecord: 0.4ms | Allocations: 4673)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:10:42 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 26ms (Views: 19.6ms | ActiveRecord: 1.4ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:10:45 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:10:45 -0500
+Processing by UsersController#show as */*
+Processing by UsersController#index as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 6ms (ActiveRecord: 0.3ms | Allocations: 1143)
+
+
+Completed 200 OK in 9ms (Views: 8.6ms | ActiveRecord: 0.2ms | Allocations: 1965)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:11:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.4ms | ActiveRecord: 0.2ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:11:44 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:11:44 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 24ms (ActiveRecord: 0.2ms | Allocations: 1431)
+
+
+Completed 200 OK in 16ms (Views: 15.5ms | ActiveRecord: 0.3ms | Allocations: 1467)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:11:44 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.2ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:14:15 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:14:15 -0500
+Processing by UsersController#index as */*
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.4ms | Allocations: 1596)
+
+
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 404 Not Found in 11ms (ActiveRecord: 0.2ms | Allocations: 2012)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:14:15 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.2ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:26:33 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:26:33 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+Processing by UsersController#show as */*
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Parameters: {"id"=>":undefined"}
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-24 12:26:33 -0500
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Completed 200 OK in 26ms (Views: 20.5ms | ActiveRecord: 0.9ms | Allocations: 1838)
+
+
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 404 Not Found in 17ms (ActiveRecord: 0.4ms | Allocations: 1639)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.2ms | Allocations: 1414)
+
+
+Started GET "/users" for ::1 at 2020-03-24 12:28:28 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:28:32 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:28:32 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.3ms | Allocations: 1333)
+
+
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.5ms | Allocations: 1860)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:28:42 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:28:42 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.2ms | Allocations: 1297)
+
+
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.2ms | Allocations: 1857)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:31:38 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 70ms (Views: 48.3ms | ActiveRecord: 3.9ms | Allocations: 6934)
+
+
+Started GET "/users/1" for ::1 at 2020-03-24 12:31:43 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.3ms | Allocations: 2527)
+
+
+  
+NoMethodError (undefined method `friends' for #<User:0x00007f96de26d5c8>):
+  
+app/controllers/users_controller.rb:9:in `show'
+Started GET "/users/1" for ::1 at 2020-03-24 12:33:11 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/homepro/Development/code/photoroid/photoroid-project/photoroid-backend/app/controllers/users_controller.rb:9: syntax error, unexpected ']'
+...json: user, include: [friends:]
+...                              ^
+/Users/homepro/Development/code/photoroid/photoroid-project/photoroid-backend/app/controllers/users_controller.rb:20: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/users_controller.rb:9: syntax error, unexpected ']'
+app/controllers/users_controller.rb:20: syntax error, unexpected end-of-input, expecting end
+app/controllers/users_controller.rb:9: syntax error, unexpected ']'
+app/controllers/users_controller.rb:20: syntax error, unexpected end-of-input, expecting end
+Started GET "/users/1" for ::1 at 2020-03-24 12:33:20 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 2.0ms | Allocations: 8858)
+
+
+  
+NoMethodError (undefined method `friends' for #<User:0x00007f96de3b1060>):
+  
+app/controllers/users_controller.rb:9:in `show'
+Started GET "/users/1" for ::1 at 2020-03-24 12:33:34 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.2ms | Allocations: 3060)
+
+
+  
+NoMethodError (undefined method `friends' for #<User:0x00007f96ddd22f78>):
+  
+app/controllers/users_controller.rb:9:in `show'
+Started GET "/users/1" for ::1 at 2020-03-24 12:33:35 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 0.2ms | Allocations: 3060)
+
+
+  
+NoMethodError (undefined method `friends' for #<User:0x00007f96ddebb830>):
+  
+app/controllers/users_controller.rb:9:in `show'
+Started GET "/users/1" for ::1 at 2020-03-24 12:33:38 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 51ms (Views: 1.0ms | ActiveRecord: 2.0ms | Allocations: 6389)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:44:59 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:44:59 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as */*
+Processing by UsersController#index as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 29ms (Views: 24.0ms | ActiveRecord: 1.0ms | Allocations: 1876)
+
+
+Completed 404 Not Found in 17ms (ActiveRecord: 0.4ms | Allocations: 1829)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:45:00 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.4ms | Allocations: 1373)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:46:01 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Started GET "/users" for ::1 at 2020-03-24 12:46:01 -0500
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.2ms | Allocations: 760)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.2ms | Allocations: 1356)
+
+
+Started GET "/users/4" for ::1 at 2020-03-24 12:46:08 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 684)
+
+
+Started GET "/users" for ::1 at 2020-03-24 12:47:28 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:47:31 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:47:31 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.1ms | Allocations: 1298)
+
+
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 1854)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:49:05 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.3ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:49:09 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:49:09 -0500
+Processing by UsersController#show as */*
+Processing by UsersController#index as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 1842)
+
+
+Completed 404 Not Found in 5ms (ActiveRecord: 0.2ms | Allocations: 1812)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 12:55:48 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 17.8ms | ActiveRecord: 1.8ms | Allocations: 1375)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 12:55:53 -0500
+Started GET "/users" for ::1 at 2020-03-24 12:55:53 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.6ms | Allocations: 1753)
+
+
+Completed 404 Not Found in 10ms (ActiveRecord: 0.4ms | Allocations: 2004)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 13:06:05 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 23ms (Views: 17.7ms | ActiveRecord: 1.0ms | Allocations: 1375)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 13:06:12 -0500
+Started GET "/users" for ::1 at 2020-03-24 13:06:12 -0500
+Processing by UsersController#show as */*
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+Processing by UsersController#index as */*
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Completed 404 Not Found in 8ms (ActiveRecord: 0.4ms | Allocations: 1151)
+
+
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.3ms | Allocations: 1936)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:16:04 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 15.8ms | ActiveRecord: 1.1ms | Allocations: 1375)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 13:16:11 -0500
+Started GET "/users" for ::1 at 2020-03-24 13:16:11 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 404 Not Found in 6ms (ActiveRecord: 0.3ms | Allocations: 1330)
+
+
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.5ms | Allocations: 1873)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 13:16:48 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.3ms | Allocations: 1356)
+
+
+Started GET "/users/:undefined" for ::1 at 2020-03-24 13:16:51 -0500
+Started GET "/users" for ::1 at 2020-03-24 13:16:51 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":undefined"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Processing by UsersController#index as */*
+Completed 404 Not Found in 4ms (ActiveRecord: 0.2ms | Allocations: 975)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:undefined):
+  
+app/controllers/users_controller.rb:7:in `show'
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 67ms (Views: 66.7ms | ActiveRecord: 0.2ms | Allocations: 27084)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:25:09 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.7ms | Allocations: 1375)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:25:13 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.4ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:30:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 34ms (Views: 27.2ms | ActiveRecord: 1.6ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:30:42 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:31:48 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:31:52 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users/:3" for ::1 at 2020-03-24 13:31:52 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>":3"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 404 Not Found in 7ms (ActiveRecord: 0.9ms | Allocations: 581)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=:3):
+  
+app/controllers/users_controller.rb:7:in `show'
+Started GET "/users" for ::1 at 2020-03-24 13:32:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 90ms (Views: 89.3ms | ActiveRecord: 0.4ms | Allocations: 1359)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:32:22 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:34:55 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:35:06 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.3ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:35:16 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.2ms | Allocations: 1357)
+
+
+Started GET "/users" for ::1 at 2020-03-24 13:35:19 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.4ms | Allocations: 1357)
+
+
+Started GET "/users/3" for ::1 at 2020-03-24 13:35:19 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:7:in `show'
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 671)
+
+
