@@ -1,0 +1,325 @@
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:49:03 -0500
+Started GET "/users" for ::1 at 2020-03-24 15:49:03 -0500
+  [1m[35m (18.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (13.9ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+Processing by UsersController#index as */*
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 518ms (Views: 441.3ms | ActiveRecord: 0.6ms | Allocations: 13265)
+
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Started GET "/users" for ::1 at 2020-03-24 15:49:31 -0500
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:49:31 -0500
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:49:31 -0500
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Processing by FriendRequestsController#index as */*
+Processing by UsersController#index as */*
+  [1m[36mFriendRequest Load (0.4ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:49:31 -0500
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Completed 200 OK in 39ms (Views: 34.5ms | ActiveRecord: 4.0ms | Allocations: 3825)
+
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.6ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+Started GET "/users" for ::1 at 2020-03-24 15:49:32 -0500
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 27640ms (Views: 27448.9ms | ActiveRecord: 36.7ms | Allocations: 31996)
+
+
+Processing by FriendRequestsController#index as */*
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mFriendRequest Load (0.7ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-24 15:49:32 -0500
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (46.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Completed 200 OK in 35ms (Views: 32.2ms | ActiveRecord: 1.4ms | Allocations: 2997)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 45677ms (Views: 45673.4ms | ActiveRecord: 2.6ms | Allocations: 21732)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Started GET "/users" for ::1 at 2020-03-24 15:50:17 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 39ms (Views: 37.3ms | ActiveRecord: 0.6ms | Allocations: 2488)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 9.2ms | ActiveRecord: 0.4ms | Allocations: 1573)
+
+
+Started GET "/users" for ::1 at 2020-03-24 15:50:17 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 46ms (Views: 40.4ms | ActiveRecord: 4.9ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 15:50:17 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 45809ms (Views: 45803.3ms | ActiveRecord: 4.8ms | Allocations: 26607)
+
+
+Completed 200 OK in 45349ms (Views: 45299.1ms | ActiveRecord: 48.7ms | Allocations: 11016)
+
+
+Started GET "/users" for ::1 at 2020-03-24 15:50:17 -0500
+Started GET "/users" for ::1 at 2020-03-24 15:50:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 90ms (Views: 89.0ms | ActiveRecord: 0.7ms | Allocations: 1567)
+
+
+Completed 200 OK in 296ms (Views: 295.0ms | ActiveRecord: 0.5ms | Allocations: 5716)
+
+
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:18 -0500
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:18 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.9ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+Completed 200 OK in 622ms (Views: 619.6ms | ActiveRecord: 1.6ms | Allocations: 4028)
+
+
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.4ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:18 -0500
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 17264ms (Views: 17261.4ms | ActiveRecord: 2.1ms | Allocations: 6487)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:36 -0500
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:36 -0500
+Started GET "/users" for ::1 at 2020-03-24 15:50:36 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.4ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Processing by UsersController#index as */*
+Processing by FriendRequestsController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Processing by FriendRequestsController#index as */*
+Completed 200 OK in 15ms (Views: 14.2ms | ActiveRecord: 0.5ms | Allocations: 2151)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mFriendRequest Load (0.3ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mFriendRequest Load (0.3ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+Started POST "/friend_requests" for ::1 at 2020-03-24 15:50:36 -0500
+  [1m[36mUser Load (146.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Processing by FriendRequestsController#create as JSON
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 876ms (Views: 727.6ms | ActiveRecord: 148.2ms | Allocations: 14270)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  Parameters: {"requestor_id"=>1, "receiver_id"=>"4", "status"=>"pending", "friend_request"=>{"requestor_id"=>1, "receiver_id"=>"4", "status"=>"pending"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 18963ms (Views: 18959.0ms | ActiveRecord: 3.5ms | Allocations: 31163)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:50:37 -0500
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mFriendRequest Create (4.3ms)[0m  [1m[32mINSERT INTO "friend_requests" ("requestor_id", "receiver_id", "status", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["requestor_id", 1], ["receiver_id", 4], ["status", "pending"], ["created_at", "2020-03-24 20:50:37.062663"], ["updated_at", "2020-03-24 20:50:37.062663"]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 1091ms (Views: 1087.6ms | ActiveRecord: 2.4ms | Allocations: 22420)
+
+
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.6ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (7.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 204 No Content in 221ms (ActiveRecord: 12.2ms | Allocations: 11442)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 1137ms (Views: 1131.3ms | ActiveRecord: 4.2ms | Allocations: 24224)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 156ms (Views: 150.8ms | ActiveRecord: 4.4ms | Allocations: 11838)
+
+
+Started GET "/users" for ::1 at 2020-03-24 15:59:08 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 1585)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-24 15:59:12 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.4ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 577ms (Views: 573.5ms | ActiveRecord: 2.7ms | Allocations: 7208)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:08 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.3ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 7.6ms | ActiveRecord: 1.2ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:21 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.3ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:23 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.4ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:32 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 9.0ms | ActiveRecord: 0.4ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:35 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.3ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:00:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 11.6ms | ActiveRecord: 3.0ms | Allocations: 1567)
+
+
+Started GET "/users" for ::1 at 2020-03-24 16:01:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 81ms (Views: 80.5ms | ActiveRecord: 0.3ms | Allocations: 1570)
+
+

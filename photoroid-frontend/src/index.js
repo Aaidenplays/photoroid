@@ -66,7 +66,7 @@ console.log('You clicked the button')
         <input type='submit' value='Submit'>
                       </form>`;
 
-      let div = el('new-user');
+      // let div = el('new-user');
       div.innerHTML = `
         <h3>Sign in below with Name:</h3>
         <form id='sign-in'>
