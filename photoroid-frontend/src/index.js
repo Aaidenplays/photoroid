@@ -6,11 +6,13 @@ const headers = {
 let current_user;
 
 let totalUsers;
+let userThing;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
       headerHandler();
       // getUsers();
       // loadFriends();
+
 el('new-login').addEventListener('click', ()=>{
 console.log('You clicked the button')
       let div = el('new-user');
@@ -25,10 +27,29 @@ console.log('You clicked the button')
                       </form>`;
 
                       
+      loadFriends();
+el('new-login').addEventListener('submit', (event)=>{
+  event.preventDefault()
 
-                    });
-el('user-login').addEventListener('click', ()=>{
-      console.log('You clicked the button')
+    let newName = event.target.children[1].value;
+    let newBio = event.target.children[4].value;
+      let newUser = {
+        method: 'POST',
+        headers: {
+          'Accept' : 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: newName,
+          bio: newBio
+        })
+      };
+      createUser(newUser);
+
+  });
+el('user-login').addEventListener('click', (event)=>{
+
+
       let div = el('new-user');
       div.innerHTML = `<form>
         <label for="name">Name:</label><br>
@@ -37,10 +58,27 @@ el('user-login').addEventListener('click', ()=>{
         <input type="text" id="password" name="password">
         <input type='submit' value='Submit'>
                       </form>`;
+      div.innerHTML = `
+        <h3>Sign in below with Name:</h3>
+        <form id='sign-in'>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name"><br>
+
+          <input type='submit' value='Submit'>
+        </form>`;
+        let btnForm = el('sign-in')
+        btnForm.addEventListener('submit', (event)=>{
+          event.preventDefault();
+          console.log(el('name').value)
+          getIdByName(el('name').value);
+
+
+      });
                     });
 
 
 
+})
 })
 function loadFriends(){
   fetch('http://localhost:3000/users')
@@ -65,6 +103,29 @@ function el(id){
 }
 
 
+function createUser(userObj){
+
+  fetch('http:localhost:3000/users',userObj)
+}
+function loginUser(id){
+
+  fetch(`http://localhost:3000/users/${id}`)
+    .then(r=>r.json())
+    .then(json => {
+      document.innerHTML = ''
+    })
+}
+function getIdByName(nameU){
+  fetch('http://localhost:3000/users')
+  .then(r => r.json())
+  .then(json=>{
+    userThing = json;
+    loginUser(userThing.find((element) =>
+      element.name === nameU
+    ).id);
+
+  });
+}
 
 
 
