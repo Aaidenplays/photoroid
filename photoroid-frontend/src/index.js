@@ -212,10 +212,13 @@ const headerHandler = () => {
     e.preventDefault();
     getUsers(e.target.dataset.id);
   });
-  el('create-boards-header')
+  el('create-boards-header').addEventListener("click", (e) => {
+    e.preventDefault();
+    generateBoardForm();
+  })
   
 }
-    /* friend request button handlers */
+    /* Friend request button handlers */
 const handleAcceptBtn = (target) => {
   console.log(`ACCEPT-TARGET: ${target}`);
   fetch(`http://localhost:3000/friend_requests/${target}`, {
@@ -228,29 +231,105 @@ const handleAcceptBtn = (target) => {
       id: target,
       status: "accepted"
     })
-  })
-  getFriends();
+  }).then(getFriends())
+  
 }
 const handleDeclineBtn = (target) => {
   console.log(`DECLINE-TARGET: ${target}`);
   fetch(`http://localhost:3000/friend_requests/${target}`, {
     method: 'DELETE'
-  })
-  getFriends();
+  }).then(getFriends())
 }
+
+    /* Board form submit handler */
+      const postUserBoard = (data,user) => {
+        console.log(`USER: ${user}`)
+        console.log(`DATA: ${data.id}`)
+        fetch('http://localhost:3000/user_boards', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            status: "active",
+            user_id: user.id,
+            board_id: data.id
+          })
+        })
+      }
+      const postBoard = (user) => {
+        const title = el('board-title');
+        const desc = el('board-description');      
+        const u1 = user[0];
+        // console.log(`another USer: ${u1}`)
+        fetch('http://localhost:3000/boards', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            description: desc,
+            title: title
+          })
+        }).then(resp => resp.json())
+        .then(data => postUserBoard(data,u1))
+        
+        //INSERT VIEW BOARD HERE
+        
+      }
+      const handleBoardSubmitBtn = (e) => {
+        e.preventDefault();
+        fetch('http://localhost:3000/users') //This will go away once user sessions implement
+        .then(resp => resp.json())
+        .then(data => postBoard(data))
+
+      }
 
 /* Rendering Functions */
 
+    /* Create board form */
+      //generate form
+        const generateBoardForm = () => {
+          /* clearing the trash */
+          el('new-user').innerHTML = '';
+          el('users').innerHTML = '';
+          el('friends-list').innerHTML = '';
+          el('requests-pending').innerHTML = '';
+
+          const container = el('board-form')
+
+          container.innerHTML = `
+            <form id='new-form'>
+              <label for="title">Title:</label>
+              <input id="board-title" type="text" name="title"><br>
+              <label for="description">Description</label>
+              <textarea id="board-description" name="description" rows ='10' cols='30'></textarea>
+              <br>
+              <input id= 'create-board-submit-btn' type='submit' value='Submit'>
+            </form>
+            <br>
+          `
+          el('create-board-submit-btn').addEventListener("click", (e) => handleBoardSubmitBtn(e))
+        }
+    /* Boards index */
+const renderBoards = () => {
+
+}
+const getBoards = () => {
+  fetch('http://localhost:3000/boards')
+  .then(resp => resp.json())
+  .then(data => renderBoards(data))
+}
     /* Friends list */
 const renderFriends = (data,target) => {
-  console.log(data)
-  console.log(`target: ${target}`)
+  console.log(data);
+  console.log(`target: ${target}`);
   const u1 = data[0];
   const u2 = target;
   console.log(`u1: ${u1.id}`);
   console.log(`u2: ${u2}`);
-  const container = el('friends-list')
-  const pendingContainer = el('requests-pending')
+  /* clearing the trash */
+  const container = el('friends-list');
+  const pendingContainer = el('requests-pending');
+  el('new-user').innerHTML = '';
+  el('users').innerHTML = '';
+  el('board-form').innerHTML = '';
   container.innerHTML = '';
   pendingContainer.innerHTML = '';
   data.forEach(request => {
@@ -324,7 +403,11 @@ const getFriends = (e) => {
     /* User page */
 const renderUsers = (users) => {
   const usersList = el("users");
+   /* clearing the trash */
+  el('board-form').innerHTML = '';
   usersList.innerHTML = '';
+  el('friends-list').innerHTML = '';
+  el('new-user').innerHTML = '';
   users.forEach(user => {
     /* declaring empty elements */
     let li = document.createElement('li');
@@ -353,3 +436,28 @@ const getUsers = () =>{
   .then(resp => resp.json())
   .then(data => renderUsers(data))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const = () => 
+
+
+
+
