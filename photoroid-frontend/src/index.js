@@ -69,7 +69,10 @@ function el(id){
 
 
 /* Event Handlers */
+
+    /* Add friend handler  */
 const postFriendRequest = (data,target) => {
+  //replace all u1 with current_user
   console.log(`HEADERS: ${headers}`)
     console.log(data)
     console.log(`target: ${target}`)
@@ -95,31 +98,130 @@ const handleAddFriend = (e) => {
   fetch('http://localhost:3000/users')
   .then(resp => resp.json())
   .then(data => postFriendRequest(data,e.target.dataset.id))
-
-  //replace all u1 with current_user
-
 }
 
-/* Header Handling */
+    /* Header navigation handling */
 const headerHandler = () => {
   el('feed-header');
   el('my-boards-header');
   el('friends-header').addEventListener("click",(e)=>{ 
     e.preventDefault();
     console.log("ITS HAPPENING")
-    loadFriends()});
+    getFriends(e)});
   el('users-header').addEventListener("click", (e) => { 
     e.preventDefault();
-    getUsers();
+    getUsers(e.target.dataset.id);
   });
   el('create-boards-header')
   
 }
+    /* friend request button handlers */
+const handleAcceptBtn = (target) => {
+  console.log(`ACCEPT-TARGET: ${target}`);
+  fetch(`http://localhost:3000/friend_requests/${target}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept':  'application/json'
+    },
+    body: JSON.stringify({
+      id: target,
+      status: "accepted"
+    })
+  })
+  getFriends();
+}
+const handleDeclineBtn = (target) => {
+  console.log(`DECLINE-TARGET: ${target}`);
+  fetch(`http://localhost:3000/friend_requests/${target}`, {
+    method: 'DELETE'
+  })
+  getFriends();
+}
 
 /* Rendering Functions */
 
+    /* Friends list */
+const renderFriends = (data,target) => {
+  console.log(data)
+  console.log(`target: ${target}`)
+  const u1 = data[0];
+  const u2 = target;
+  console.log(`u1: ${u1.id}`);
+  console.log(`u2: ${u2}`);
+  const container = el('friends-list')
+  const pendingContainer = el('requests-pending')
+  container.innerHTML = '';
+  pendingContainer.innerHTML = '';
+  data.forEach(request => {
+    console.log(`requestor: ${request.requestor.id}`)
+    console.log(`receiver: ${request.receiver.id}`)
+    /* Accepted friends */
+    if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'accepted'){
+      let li = document.createElement('li'); 
+      let name = document.createElement('h1');
+      let bio = document.createElement('p');
+      //make if statment for requestor or receiver
+      console.log(request)
+      if (request.requestor.id != u1.id){
+        name = request.requestor.name;
+        bio = request.requestor.bio;
+      }
+      else {
+        name = request.receiver.name;
+        bio = request.receiver.bio;
+      }
+      li.append(name);
+      li.append(document.createElement('p'))
+      li.append(bio);
+      li.append(document.createElement('p'))
+      li.append(document.createElement('p'))
+      container.append(li); 
+    }
+    else if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'pending'){
+      let li = document.createElement('li'); 
+      let name = document.createElement('h1');
+      let bio = document.createElement('p');
+      
+      /* buttons */
+      let acceptBtn = document.createElement('button');
+      acceptBtn.innerText = "Accept";
+      acceptBtn.dataset.friendRequest = request.id;
+      acceptBtn.addEventListener("click", (e) => handleAcceptBtn(e.target.dataset.friendRequest))
+      let declineBtn = document.createElement('button');
+      declineBtn.innerText = "Decline";
+      declineBtn.dataset.friendRequest = request.id
+      declineBtn.addEventListener("click", (e) => handleDeclineBtn(e.target.dataset.friendRequest))
+      /* /buttons */
 
+      //make if statment for requestor or receiver
+      console.log(request)
+      if (request.requestor.id != u1.id){
+        name = request.requestor.name;
+        bio = request.requestor.bio;
+      }
+      else {
+        name = request.receiver.name;
+        bio = request.receiver.bio;
+      }
+      li.append(name);
+      li.append(acceptBtn);
+      li.append(declineBtn);
+      li.append(document.createElement('p'))
+      li.append(bio);
+      li.append(document.createElement('p'))
+      li.append(document.createElement('p'))
+      pendingContainer.append(li); 
+    }
+  })
+}
+const getFriends = (e) => {
+  fetch('http://localhost:3000/friend_requests')
+  .then(resp => resp.json())
+  .then(data => renderFriends(data,e))
+}
 
+    /* User page */
 const renderUsers = (users) => {
   const usersList = el("users");
   usersList.innerHTML = '';
@@ -146,8 +248,6 @@ const renderUsers = (users) => {
     usersList.append(li);
   });
 }
-
-
 const getUsers = () =>{
   fetch('http://localhost:3000/users')
   .then(resp => resp.json())
