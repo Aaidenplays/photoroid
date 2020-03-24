@@ -25,9 +25,11 @@ console.log('You clicked the button')
         <input type="text" id="confirmPassword" name="confirmPassword">
         <input type='submit' value='Submit'>
                       </form>`;
-
                       
+  console.log('Hey there Cowboy!');
+
       loadFriends();
+})//check later
 el('new-login').addEventListener('submit', (event)=>{
   event.preventDefault()
 
@@ -50,14 +52,21 @@ el('new-login').addEventListener('submit', (event)=>{
 el('user-login').addEventListener('click', (event)=>{
 
 
+
+el('new-login').addEventListener('click', ()=>{
+console.log('You clicked the button')
       let div = el('new-user');
       div.innerHTML = `<form>
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name"><br>
         <label for="password">Password</label><br>
-        <input type="text" id="password" name="password">
+        <input type="text" id="password" name="password"><br>
+        <label for="confirmPassword">Confirm Password</label><br>
+        <input type="text" id="confirmPassword" name="confirmPassword">
         <input type='submit' value='Submit'>
                       </form>`;
+
+      let div = el('new-user');
       div.innerHTML = `
         <h3>Sign in below with Name:</h3>
         <form id='sign-in'>
@@ -71,9 +80,14 @@ el('user-login').addEventListener('click', (event)=>{
           event.preventDefault();
           console.log(el('name').value)
           getIdByName(el('name').value);
-
-
       });
+      div.innerHTML = `<form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="password">Password</label><br>
+        <input type="text" id="password" name="password">
+        <input type='submit' value='Submit'>
+                      </form>`;
                     });
 
 
@@ -101,6 +115,31 @@ function loadFriends(){
 function el(id){
   return document.getElementById(id);
 }
+
+function createUser(userObj){
+
+  fetch('http:localhost:3000/users',userObj)
+}
+function loginUser(id){
+
+  fetch(`http://localhost:3000/users/${id}`)
+    .then(r=>r.json())
+    .then(json => {
+      document.innerHTML = ''
+    })
+}
+function getIdByName(nameU){
+  fetch('http://localhost:3000/users')
+  .then(r => r.json())
+  .then(json=>{
+    userThing = json;
+    loginUser(userThing.find((element) =>
+      element.name === nameU
+    ).id);
+
+  });
+}
+
 
 
 function createUser(userObj){
