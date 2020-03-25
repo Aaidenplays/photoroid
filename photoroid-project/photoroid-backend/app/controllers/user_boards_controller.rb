@@ -1,7 +1,7 @@
 class UserBoardsController < ApplicationController
     def index
-        userboards =  UserBoard.all
-        render json: userboards
+        user_boards =  UserBoard.all
+        render json: user_boards
       end
 
     def create
