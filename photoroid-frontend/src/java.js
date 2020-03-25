@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     function el(id){
         return document.getElementById(id);
     }
+    const getBoardData = (id) => {
+      return fetch(`http://localhost:3000/boards/${id}`)
+      .then(resp => resp.json())
+    }
 
 /* Event Handlers */
 
@@ -151,15 +155,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         console.log(board)
         return fetch(`http://localhost:3000/user_boards`)
         .then(resp => resp.json())
-        // .then(data => {
-        //   data.forEach(userBoard => {
-        //     if (userBoard.board_id == board){
-        //       console.log("success!");
-        //       console.log(userBoard);
-        //       return userBoard;
-            // }
-          // })
-        // })
       }
       const handleInviteBtn = (target, friend) => {
         console.log('maybe')
@@ -261,10 +256,50 @@ document.addEventListener('DOMContentLoaded', ()=>{
               li.append(title);
               li.append(description);
               li.append(inviteBtn);
-              container.append(li)
+              container.append(li);
             }            
           })
         })
+        getUserBoardsForRequestsRendering();
+      }
+      const renderUserBoardRequests = (userBoards) => {
+        const container = el('board-requests-pending');
+        userBoards.forEach(userBoard => {
+          if (userBoard.user_id == currentUser.id && userBoard.status == "pending"){
+            console.log(`I HAVE BEEN RENDERED!!!!!!`)
+            /* declare element variables */
+            let li = document.createElement('li');
+            let message = document.createElement('p')
+            let acceptBoardRequestBtn = document.createElement('button');
+            let declineBoardRequestBtn = document.createElement('button');
+            
+            /* initialize variables */
+            acceptBoardRequestBtn.dataset.boardId = userBoard.id;
+            declineBoardRequestBtn.dataset.boardId = userBoard.id;
+            acceptBoardRequestBtn.innerText = 'Accept'
+            declineBoardRequestBtn.innerText = 'Decline'
+            console.log(`userBoard.id:: ${userBoard.board_id}`)
+            getBoardData(userBoard.board_id).then(datas => {
+                /* button logic */
+              console.log(datas)
+              message.innerText = `You have ben invited to ${datas.title}!`;
+              acceptBoardRequestBtn.addEventListener("click", () => handleAcceptBoardRequestBtn());
+              declineBoardRequestBtn.addEventListener("click", () => handleDeclineBoardRequestBtn());
+
+              /* append elements */
+              li.append(message);
+              li.append(acceptBoardRequestBtn);
+              li.append(declineBoardRequestBtn);
+              container.append(li);
+            })
+
+          }
+        })
+      }
+      const getUserBoardsForRequestsRendering = () => {
+        fetch('http://localhost:3000/user_boards')
+        .then(resp => resp.json())
+        .then(data => renderUserBoardRequests(data))
       }
       const getBoards = (user) => {
         fetch('http://localhost:3000/boards')
