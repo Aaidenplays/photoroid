@@ -143,9 +143,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             board_id: board
           })
         })
-        user = null;
+        board = null;
         friend = null;
-
       }
 
       const boardList = (board) => {
@@ -168,7 +167,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
           console.log("YES!")
           getBoards(currentUser);
         }
-        board = target.dataset.boardId
+        console.log(`TARGET:${target}`)
+        if (!target){
+          getFriends();
+        }
+        board = target
         let userBoardFound
         boardList(board).then(data => {
           data.forEach(userBoard => {
@@ -250,7 +253,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
               inviteBtn.dataset.boardId = board.id;
               inviteBtn.type = ('button')
               inviteBtn.style = ('color:blue; background-color:orange');
-              inviteBtn.addEventListener("click", (e) => handleInviteBtn(e.target, friend));
+              inviteBtn.addEventListener("click", (e) => handleInviteBtn(e.target.dataset.boardId, friend));
               /* initializing elements */
               title.innerText = board.title;
               description.innerText = board.description;
