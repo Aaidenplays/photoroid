@@ -2,16 +2,24 @@
 let board;
 let friend;
 
-function el(id){
-    return document.getElementById(id);
-  }
-  
-/* Event Handlers */
 
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    headerHandler();
+})
+/*helper functions */
+    function el(id){
+        return document.getElementById(id);
+    }
+
+/* Event Handlers */
 
     /* Header navigation handling */
       const headerHandler = () => {
-        el('feed-header');
+        el('feed-header').addEventListener("click", (e) => {
+          e.preventDefault();
+
+        });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
           setu1ForBoard();
@@ -36,7 +44,7 @@ function el(id){
         console.log(`HEADERS: ${headers}`)
           console.log(data)
           console.log(`target: ${target}`)
-          const u1 = data[0];
+          const u1 = currentUser;
           const u2 = target;
           console.log(`u1: ${u1.id}`);
           console.log(`u2: ${u2}`);
@@ -100,7 +108,7 @@ function el(id){
       const postBoard = (user) => {
         const title = el('board-title');
         const desc = el('board-description');      
-        const u1 = user[0];
+        const u1 = currentUser;
         // console.log(`another USer: ${u1}`)
         fetch('http://localhost:3000/boards', {
           method: 'POST',
@@ -124,15 +132,20 @@ function el(id){
       }
     /* Invite handler */
       const postBoardRequest = (friend, board) => {
+        console.log(friend);
+        console.log(board);
         fetch('http://localhost:3000/user_boards', {
           method: 'POST',
           headers,
           body: JSON.stringify({
             status: "pending",
-            user_id: user.id,
-            board_id: data
+            user_id: friend,
+            board_id: board
           })
         })
+        user = null;
+        friend = null;
+
       }
 
       const boardList = (board) => {
@@ -149,7 +162,12 @@ function el(id){
           // })
         // })
       }
-      const handleInviteBtn = (target) => {
+      const handleInviteBtn = (target, friend) => {
+        console.log('maybe')
+        if (!board) {
+          console.log("YES!")
+          getBoards(currentUser);
+        }
         board = target.dataset.boardId
         let userBoardFound
         boardList(board).then(data => {
@@ -165,10 +183,9 @@ function el(id){
           //getFriends();
         }
         else {
-          postBoardRequests(friend, board);
+          postBoardRequest(friend, board);
         }
         });
-
       }
 /* Rendering Functions */
 
@@ -200,7 +217,7 @@ function el(id){
         fetch('http://localhost:3000/users') //This will go away once user sessions implement
         .then(resp => resp.json())
         .then(data => {
-          const u1 = data[0]
+          const u1 = currentUser;
           getBoards(u1)
         })
       }
@@ -233,7 +250,7 @@ function el(id){
               inviteBtn.dataset.boardId = board.id;
               inviteBtn.type = ('button')
               inviteBtn.style = ('color:blue; background-color:orange');
-              inviteBtn.addEventListener("click", (e) => handleInviteBtn(e.target));
+              inviteBtn.addEventListener("click", (e) => handleInviteBtn(e.target, friend));
               /* initializing elements */
               title.innerText = board.title;
               description.innerText = board.description;
@@ -255,7 +272,7 @@ function el(id){
       const renderFriends = (data,target) => {
         console.log(data);
         console.log(`target: ${target}`);
-        const u1 = data[0];
+        const u1 = currentUser;
         const u2 = target;
         console.log(`U1:::::${u1.id}`);
         console.log(`u2: ${u2}`);
@@ -276,19 +293,32 @@ function el(id){
             let li = document.createElement('li'); 
             let name = document.createElement('h1');
             let bio = document.createElement('p');
+            let inviteBtn = document.createElement('button');
+
             //make if statment for requestor or receiver
             console.log(request)
             if (request.requestor.id != u1.id){
               name = request.requestor.name;
               bio = request.requestor.bio;
+              inviteBtn.dataset.friendId = request.requestor.id;
+              friend = request.requestor.id;
+              inviteBtn.innerText = "Invite User"
             }
             else {
               name = request.receiver.name;
               bio = request.receiver.bio;
+              inviteBtn.dataset.friendId = request.receiver.id;
+              inviteBtn.innerText = "Invite User"
+              friend = request.receiver.id;
             }
+            inviteBtn.addEventListener("click", () => {
+              console.log('i was clicked')
+              handleInviteBtn(board, friend)
+            });
             li.append(name);
             li.append(document.createElement('p'))
             li.append(bio);
+            li.append(inviteBtn);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
             container.append(li); 
@@ -302,11 +332,11 @@ function el(id){
             let acceptBtn = document.createElement('button');
             acceptBtn.innerText = "Accept";
             acceptBtn.dataset.friendRequest = request.id;
-            acceptBtn.addEventListener("click", (e) => handleAcceptBtn(e.target.dataset.friendRequest))
+            acceptBtn.addEventListener("click", (e) => handleAcceptBtn(e.target.dataset.friendRequest));
             let declineBtn = document.createElement('button');
             declineBtn.innerText = "Decline";
-            declineBtn.dataset.friendRequest = request.id
-            declineBtn.addEventListener("click", (e) => handleDeclineBtn(e.target.dataset.friendRequest))
+            declineBtn.dataset.friendRequest = request.id;
+            declineBtn.addEventListener("click", (e) => handleDeclineBtn(e.target.dataset.friendRequest));
             /* /buttons */
 
             //make if statment for requestor or receiver

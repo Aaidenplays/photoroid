@@ -2,71 +2,56 @@ const headers = {
   'Content-Type': 'application/json',
   'Accept':  'application/json'
 }
-
+let currentUser;
 let current_user;
 
 let totalUsers;
 let userThing;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
-      headerHandler();
-      // getUsers();
-      // loadFriends();
-
-el('new-login').addEventListener('click', ()=>{
-console.log('You clicked the button')
-      let div = el('new-user');
-      div.innerHTML = `<form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" name="password"><br>
-        <label for="confirmPassword">Confirm Password</label><br>
-        <input type="text" id="confirmPassword" name="confirmPassword">
-        <input type='submit' value='Submit'>
-                      </form>`;
-                      
-  console.log('Hey there Cowboy!');
-
+      // headerHandler();
       loadFriends();
-})//check later
-el('new-login').addEventListener('submit', (event)=>{
-  event.preventDefault()
+      // getUsers();
 
-    let newName = event.target.children[1].value;
-    let newBio = event.target.children[4].value;
-      let newUser = {
-        method: 'POST',
-        headers: {
-          'Accept' : 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: newName,
-          bio: newBio
-        })
-      };
-      createUser(newUser);
+el('new-login').addEventListener('click', (event)=>{
 
+    let div = el('new-user')
+    div.innerHTML= `
+      <form id='new-login'>
+         <label for="name">Name:</label>
+         <input type="text" id="name" name="name"><br>
+         <label for="bio">Bio:</label>
+         <textarea id='bio' name='bio' rows ='10' cols='30'></textarea>
+         <br>
+         <input type='submit' value='Submit'>
+          </form>`;
+        let btn = el('new-login')
+        btn.addEventListener('submit', (event)=> {
+          event.preventDefault();
+
+          let newName = event.target.children[1].value;
+          let newBio = event.target.children[4].value;
+          let newUser = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+                name: newName,
+                  bio: newBio
+                })
+              };
+              createUser(newUser);
+            });
   });
-el('user-login').addEventListener('click', (event)=>{
 
 
 
-el('new-login').addEventListener('click', ()=>{
+
+el('user-login').addEventListener('click', ()=>{
 console.log('You clicked the button')
       let div = el('new-user');
-      div.innerHTML = `<form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" name="password"><br>
-        <label for="confirmPassword">Confirm Password</label><br>
-        <input type="text" id="confirmPassword" name="confirmPassword">
-        <input type='submit' value='Submit'>
-                      </form>`;
 
-      // let div = el('new-user');
+
+
       div.innerHTML = `
         <h3>Sign in below with Name:</h3>
         <form id='sign-in'>
@@ -78,21 +63,16 @@ console.log('You clicked the button')
         let btnForm = el('sign-in')
         btnForm.addEventListener('submit', (event)=>{
           event.preventDefault();
-          console.log(el('name').value)
-          getIdByName(el('name').value);
+          console.log(el('name').value);
+          loginUser(el('name').value);
+          // getIdByName(el('name').value);
       });
-      div.innerHTML = `<form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="password">Password</label><br>
-        <input type="text" id="password" name="password">
-        <input type='submit' value='Submit'>
-                      </form>`;
-                    });
+
+});
 
 
 
-})
+
 })
 function loadFriends(){
   fetch('http://localhost:3000/users')
@@ -119,14 +99,26 @@ function el(id){
 function createUser(userObj){
 
   fetch('http:localhost:3000/users',userObj)
-}
-function loginUser(id){
 
-  fetch(`http://localhost:3000/users/${id}`)
-    .then(r=>r.json())
-    .then(json => {
-      document.innerHTML = ''
+}
+function loginUser(name){
+
+  fetch(`http://localhost:3000/users/log_user_in`, {
+    method:'POST',
+    headers: headers,
+    body: JSON.stringify({
+      name: name
     })
+  })
+  .then(r => r.json())
+  .then(json => {
+    currentUser = json
+
+    let pageHeader = el('h3-id')
+    pageHeader.innerText = currentUser.name
+    let newJs = document.createElement('script')
+    // newJs.setAttribute('src','src/java.js')
+  });
 }
 function getIdByName(nameU){
   fetch('http://localhost:3000/users')
@@ -139,58 +131,5 @@ function getIdByName(nameU){
 
   });
 }
-
-
-
-function createUser(userObj){
-
-  fetch('http:localhost:3000/users',userObj)
-}
-function loginUser(id){
-
-  fetch(`http://localhost:3000/users/${id}`)
-    .then(r=>r.json())
-    .then(json => {
-      document.innerHTML = ''
-    })
-}
-function getIdByName(nameU){
-  fetch('http://localhost:3000/users')
-  .then(r => r.json())
-  .then(json=>{
-    userThing = json;
-    loginUser(userThing.find((element) =>
-      element.name === nameU
-    ).id);
-
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const = () => 
-
-
 
 
