@@ -2,12 +2,17 @@
 let board;
 let friend;
 
-function el(id){
-    return document.getElementById(id);
-  }
-  
-/* Event Handlers */
 
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    headerHandler();
+})
+/*helper functions */
+    function el(id){
+        return document.getElementById(id);
+    }
+
+/* Event Handlers */
 
     /* Header navigation handling */
       const headerHandler = () => {
@@ -373,4 +378,3 @@ function el(id){
         .then(resp => resp.json())
         .then(data => renderUsers(data))
       }
-      

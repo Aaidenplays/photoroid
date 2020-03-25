@@ -9,7 +9,7 @@ let totalUsers;
 let userThing;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
-      headerHandler();
+      // headerHandler();
       loadFriends();
       // getUsers();
 
@@ -117,7 +117,7 @@ function loginUser(name){
     let pageHeader = el('h3-id')
     pageHeader.innerText = currentUser.name
     let newJs = document.createElement('script')
-    newJs.setAttribute('src','src/java.js')
+    // newJs.setAttribute('src','src/java.js')
   });
 }
 function getIdByName(nameU){
