@@ -9,7 +9,7 @@ let totalUsers;
 let userThing;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
-      headerHandler();
+      // headerHandler();
       loadFriends();
       // getUsers();
 
@@ -99,6 +99,10 @@ function el(id){
 function createUser(userObj){
 
   fetch('http:localhost:3000/users',userObj)
+  .then(r=>r.json())
+  .then(json=>{
+    currentUser = json
+  })
 
 }
 function loginUser(name){
@@ -131,5 +135,3 @@ function getIdByName(nameU){
 
   });
 }
-
-
