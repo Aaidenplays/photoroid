@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 2020_03_23_205234) do
   create_table "boards", force: :cascade do |t|
     t.string "description"
     t.string "title"
-    t.string "media_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

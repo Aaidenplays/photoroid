@@ -16,5 +16,20 @@ class UsersController < ApplicationController
       user.save
     end
   end
+  def log_user_in
+    user = User.find_by(name: params[:name])
+
+
+    if user
+      session[:user_id] = user.id
+      render json: user
+       # redirect_to user
+    else
+      @error = "Wrong username or password"
+       # redirect_to log_in_path
+    end
+
+
+  end
 
 end
