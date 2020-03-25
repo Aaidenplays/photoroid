@@ -99,7 +99,7 @@ function el(id){
 function createUser(userObj){
 
   fetch('http:localhost:3000/users',userObj)
-  
+
 }
 function loginUser(name){
 
@@ -116,7 +116,8 @@ function loginUser(name){
 
     let pageHeader = el('h3-id')
     pageHeader.innerText = currentUser.name
-
+    let newJs = document.createElement('script')
+    newJs.setAttribute('src','src/java.js')
   });
 }
 function getIdByName(nameU){
