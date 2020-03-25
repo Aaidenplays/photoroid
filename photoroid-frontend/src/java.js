@@ -19,8 +19,8 @@ function el(id){
         });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
-          generateBoardForm();
-          // setu1ForBoard();
+          
+           setu1ForBoard();
         });
         el('friends-header').addEventListener("click",(e)=>{
           e.preventDefault();
@@ -100,6 +100,7 @@ function el(id){
             status: "active",
             user_id: user.id,
             board_id: data
+
           })
         })
       }
@@ -114,6 +115,7 @@ function el(id){
           body: JSON.stringify({
             description: desc.value,
             title: title.value
+
           })
         }).then(resp => resp.json())
         .then(data => postUserBoard(data.id,u1))

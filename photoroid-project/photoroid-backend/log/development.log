@@ -109,3 +109,170 @@ Processing by UsersController#log_user_in as JSON
 Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 707)
 
 
+Started GET "/users" for ::1 at 2020-03-25 14:07:47 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 7.3ms | ActiveRecord: 0.6ms | Allocations: 2138)
+
+
+Started POST "/boards" for ::1 at 2020-03-25 14:07:47 -0500
+Processing by BoardsController#create as JSON
+  Parameters: {"description"=>"", "title"=>"", "board"=>{"description"=>"", "title"=>""}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mBoard Create (1.0ms)[0m  [1m[32mINSERT INTO "boards" ("description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", ""], ["title", ""], ["created_at", "2020-03-25 19:07:47.228576"], ["updated_at", "2020-03-25 19:07:47.228576"]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+Completed 200 OK in 11ms (Views: 0.4ms | ActiveRecord: 1.7ms | Allocations: 2515)
+
+
+Started POST "/user_boards" for ::1 at 2020-03-25 14:07:47 -0500
+Processing by UserBoardsController#create as JSON
+  Parameters: {"status"=>"active", "user_id"=>1, "board_id"=>2, "user_board"=>{"status"=>"active", "user_id"=>1, "board_id"=>2}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[36mUserBoard Create (0.6ms)[0m  [1m[32mINSERT INTO "user_boards" ("status", "user_id", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["status", "active"], ["user_id", 1], ["board_id", 2], ["created_at", "2020-03-25 19:07:47.274426"], ["updated_at", "2020-03-25 19:07:47.274426"]]
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+Completed 200 OK in 17ms (Views: 0.3ms | ActiveRecord: 2.1ms | Allocations: 8123)
+
+
+Started GET "/users" for ::1 at 2020-03-25 14:38:27 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 8.0ms | ActiveRecord: 0.8ms | Allocations: 7512)
+
+
+Started POST "/boards" for ::1 at 2020-03-25 14:38:27 -0500
+Processing by BoardsController#create as JSON
+  Parameters: {"description"=>"dgdfd", "title"=>"Student", "board"=>{"description"=>"dgdfd", "title"=>"Student"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mBoard Create (0.9ms)[0m  [1m[32mINSERT INTO "boards" ("description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", "dgdfd"], ["title", "Student"], ["created_at", "2020-03-25 19:38:27.333377"], ["updated_at", "2020-03-25 19:38:27.333377"]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+Completed 200 OK in 21ms (Views: 0.4ms | ActiveRecord: 3.1ms | Allocations: 8242)
+
+
+Started POST "/user_boards" for ::1 at 2020-03-25 14:38:27 -0500
+Processing by UserBoardsController#create as JSON
+  Parameters: {"status"=>"active", "user_id"=>1, "board_id"=>3, "user_board"=>{"status"=>"active", "user_id"=>1, "board_id"=>3}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:8:in `create'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 7598)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 14:39:42 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 810)
+
+
+Started GET "/users" for ::1 at 2020-03-25 14:39:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 2113)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 14:39:43 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.4ms | Allocations: 4789)
+
+
+  
+NoMethodError (undefined method `medias' for #<Board:0x00007fb82d3d4d38>
+Did you mean?  media
+               media=):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-25 14:41:10 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 11ms (Views: 5.4ms | ActiveRecord: 0.8ms | Allocations: 7847)
+
+
+Started GET "/users" for ::1 at 2020-03-25 14:41:10 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 14:41:10 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 1.6ms | Allocations: 11120)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/boards" for ::1 at 2020-03-25 14:41:10 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms | Allocations: 3566)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-25 14:44:27 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2110)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 14:44:27 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.4ms | Allocations: 3567)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
