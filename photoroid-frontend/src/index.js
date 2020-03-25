@@ -216,7 +216,7 @@ const headerHandler = () => {
     e.preventDefault();
     generateBoardForm();
   })
-  
+
 }
     /* Friend request button handlers */
 const handleAcceptBtn = (target) => {
