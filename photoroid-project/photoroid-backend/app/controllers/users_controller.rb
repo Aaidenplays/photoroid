@@ -10,10 +10,12 @@ class UsersController < ApplicationController
   end
   def create
     user = User.new(name: params[:name], bio: params[:bio])
-    if params[:name] == ''
-      return 'Must contain letters'
-    else
+    if user.valid?
+      session[:user_id] = user.id
       user.save
+      render json: user
+    
+
     end
   end
   def log_user_in
