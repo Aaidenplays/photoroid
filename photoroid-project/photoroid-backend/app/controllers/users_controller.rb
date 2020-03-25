@@ -11,10 +11,14 @@ class UsersController < ApplicationController
   def create
     user = User.new(name: params[:name], bio: params[:bio])
     if user.valid?
-      session[:user_id] = user.id
       user.save
+      session[:user_id] = user.id
+      puts "------------------"
+      puts "This is the session ID: #{session[:user_id]}"
+      puts "------------------"
+
       render json: user
-    
+
 
     end
   end

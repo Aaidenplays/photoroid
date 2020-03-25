@@ -1,26 +1,32 @@
 
 let board;
 let friend;
-
+document.addEventListener('DOMContentLoaded', ()=>{
+  headerHandler();
+})
 function el(id){
     return document.getElementById(id);
   }
-  
+
 /* Event Handlers */
 
 
     /* Header navigation handling */
       const headerHandler = () => {
-        el('feed-header');
+        el('feed-header').addEventListener('click',(e)=>{
+          e.preventDefault();
+
+        });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
-          setu1ForBoard();
+          generateBoardForm();
+          // setu1ForBoard();
         });
-        el('friends-header').addEventListener("click",(e)=>{ 
+        el('friends-header').addEventListener("click",(e)=>{
           e.preventDefault();
           console.log("ITS HAPPENING")
           getFriends(e)});
-        el('users-header').addEventListener("click", (e) => { 
+        el('users-header').addEventListener("click", (e) => {
           e.preventDefault();
           getUsers(e.target.dataset.id);
         });
@@ -74,7 +80,7 @@ function el(id){
             status: "accepted"
           })
         }).then(getFriends())
-        
+
       }
       const handleDeclineBtn = (target) => {
         console.log(`DECLINE-TARGET: ${target}`);
@@ -99,7 +105,7 @@ function el(id){
       }
       const postBoard = (user) => {
         const title = el('board-title');
-        const desc = el('board-description');      
+        const desc = el('board-description');
         const u1 = user[0];
         // console.log(`another USer: ${u1}`)
         fetch('http://localhost:3000/boards', {
@@ -111,9 +117,9 @@ function el(id){
           })
         }).then(resp => resp.json())
         .then(data => postUserBoard(data.id,u1))
-        
+
         //INSERT VIEW BOARD HERE
-        
+
       }
       const handleBoardSubmitBtn = (e) => {
         e.preventDefault();
@@ -189,6 +195,8 @@ function el(id){
               <label for="description">Description</label>
               <textarea id="board-description" name="description" rows ='10' cols='30'></textarea>
               <br>
+              <label for='file'> Upload Board media </label>
+              <input id='img-input' type='file' name='file'>
               <input id= 'create-board-submit-btn' type='submit' value='Submit'>
             </form>
             <br>
@@ -242,7 +250,7 @@ function el(id){
               li.append(description);
               li.append(inviteBtn);
               container.append(li)
-            }            
+            }
           })
         })
       }
@@ -273,7 +281,7 @@ function el(id){
           console.log(`receiver: ${request.receiver.id}`)
           /* Accepted friends */
           if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'accepted'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
             //make if statment for requestor or receiver
@@ -291,13 +299,13 @@ function el(id){
             li.append(bio);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            container.append(li); 
+            container.append(li);
           }
           else if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'pending'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
-            
+
             /* buttons */
             let acceptBtn = document.createElement('button');
             acceptBtn.innerText = "Accept";
@@ -326,7 +334,7 @@ function el(id){
             li.append(bio);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            pendingContainer.append(li); 
+            pendingContainer.append(li);
           }
         })
       }
@@ -373,4 +381,3 @@ function el(id){
         .then(resp => resp.json())
         .then(data => renderUsers(data))
       }
-      
