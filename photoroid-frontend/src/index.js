@@ -150,3 +150,34 @@ function signOut(){
   location.reload()
   // currentUser ='';
 }
+function addPostForm(){
+  let boardDiv = el('board-form');
+
+  boardDiv.innerHTML = `<form id='post-data'>
+  <label for='title'> Title </label>
+  <input for='title' name='title' type='text'>
+  <label for='file'> Upload Board media </label>
+  <input id='img-input' type='file' name='file'>
+  <input type='submit' value='Submit Post'>
+  </form>
+  `;
+  el('post-data').addEventListener('submit', (event)=>{
+    event.preventDefault();
+    let title = event.target.children[1].value
+
+    let media = event.target.children[3].value
+    addPost(title,media);
+  })
+  // add func to handle meia post requests
+}
+function addPost(postTitle,postMedia){
+  fetch('http://localhost:3000/media', {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      title: postTitle,
+      media: postMedia,
+      board_id: 1
+    })
+  })
+}

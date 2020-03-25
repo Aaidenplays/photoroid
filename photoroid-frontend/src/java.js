@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           e.preventDefault();
 
            setu1ForBoard();
+
         });
         el('friends-header').addEventListener("click",(e)=>{
           e.preventDefault();
@@ -211,8 +212,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
               <label for="description">Description</label>
               <textarea id="board-description" name="description" rows ='10' cols='30'></textarea>
               <br>
-              <label for='file'> Upload Board media </label>
-              <input id='img-input' type='file' name='file'>
+
               <input id= 'create-board-submit-btn' type='submit' value='Submit'>
             </form>
             <br>
@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         .then(data => {
           const u1 = currentUser;
           getBoards(u1)
+
         })
       }
       const renderBoards = (boards, user) => {
@@ -269,8 +270,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
           })
         })
+
         getUserBoardsForRequestsRendering();
+          // Jack added: March 25th
+        el('new-user').innerHTML = `<button id='post-button'>Add Post</button>`
+        el('post-button').addEventListener('click',()=>{
+          el('new-user').innerHTML=''
+            addPostForm();
+        })
+        // add post button and event listener for submiting form id is "post-data"
       }
+
+
       const renderUserBoardRequests = (userBoards) => {
         const container = el('board-requests-pending');
         userBoards.forEach(userBoard => {

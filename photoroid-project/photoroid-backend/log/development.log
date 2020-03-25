@@ -1,0 +1,2615 @@
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 15:59:20 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 9ms (Views: 1.0ms | ActiveRecord: 1.3ms | Allocations: 4263)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:00:14 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 2148)
+
+
+Started POST "/boards" for ::1 at 2020-03-25 16:00:14 -0500
+Processing by BoardsController#create as JSON
+  Parameters: {"description"=>"This isnt going to work", "title"=>"Board1", "board"=>{"description"=>"This isnt going to work", "title"=>"Board1"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mBoard Create (2.4ms)[0m  [1m[32mINSERT INTO "boards" ("description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", "This isnt going to work"], ["title", "Board1"], ["created_at", "2020-03-25 21:00:14.718443"], ["updated_at", "2020-03-25 21:00:14.718443"]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 4], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+Completed 200 OK in 22ms (Views: 0.3ms | ActiveRecord: 4.1ms | Allocations: 9318)
+
+
+Started POST "/user_boards" for ::1 at 2020-03-25 16:00:14 -0500
+Processing by UserBoardsController#create as JSON
+  Parameters: {"status"=>"active", "user_id"=>5, "board_id"=>4, "user_board"=>{"status"=>"active", "user_id"=>5, "board_id"=>4}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mBoard Load (0.3ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 8025)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:00:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2128)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:00:43 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.3ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.6ms | Allocations: 5715)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-25 16:00:55 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:00:55 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.4ms | Allocations: 3580)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/users" for ::1 at 2020-03-25 16:01:50 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2127)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:02:00 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:02:00 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms | Allocations: 3576)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:02:38 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:02:58 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:02:58 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.4ms | Allocations: 3577)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/" for ::1 at 2020-03-25 16:04:41 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/homepro/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/homepro/.rvm/gems/ruby-2.6.1/gems/railties-6.0.2.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.9ms | Allocations: 315)
+Completed 200 OK in 17ms (Views: 12.9ms | ActiveRecord: 0.0ms | Allocations: 1589)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:04:47 -0500
+Processing by BoardsController#index as HTML
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mActiveStorage::Attachment Load (0.1ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 1], ["record_type", "Board"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.5ms | Allocations: 3635)
+
+
+  
+Module::DelegationError (serializable_hash delegated to attachment, but attachment is nil):
+  
+app/controllers/boards_controller.rb:4:in `index'
+Started GET "/boards" for ::1 at 2020-03-25 16:04:58 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by BoardsController#index as HTML
+  [1m[36mBoard Load (0.4ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 19.7ms | ActiveRecord: 2.1ms | Allocations: 17996)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:05:20 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 826)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:05:21 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 2126)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:05:21 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:05:21 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.4ms | Allocations: 4379)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:06:47 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Aaiden", "user"=>{"name"=>"Aaiden"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Aaiden"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:06:49 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:06:49 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.8ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:06:49 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/boards/1" for ::1 at 2020-03-25 16:06:49 -0500
+Processing by BoardsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:13:in `show'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:14:in `show'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.3ms | Allocations: 4131)
+
+
+  
+NoMethodError (undefined method `medias' for #<Board:0x00007f9b9552c6b8>
+Did you mean?  media
+               media=):
+  
+app/controllers/boards_controller.rb:14:in `show'
+Started GET "/users" for ::1 at 2020-03-25 16:19:17 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 6.4ms | ActiveRecord: 0.7ms | Allocations: 7512)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:19:17 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.5ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 23ms (Views: 17.3ms | ActiveRecord: 1.2ms | Allocations: 11800)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:19:17 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.2ms | Allocations: 4259)
+
+
+Started GET "/boards/1" for ::1 at 2020-03-25 16:19:17 -0500
+Processing by BoardsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:13:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:14:in `show'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.3ms | Allocations: 4006)
+
+
+  
+NoMethodError (undefined method `medias' for #<Board:0x00007f9b96bc0fc8>):
+  
+app/controllers/boards_controller.rb:14:in `show'
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mMedia Create (1.9ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "hey"], ["likes", "4"], ["board_id", 3], ["created_at", "2020-03-25 21:29:08.990409"], ["updated_at", "2020-03-25 21:29:08.990409"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:29:45 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 0.8ms | Allocations: 4263)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:31:45 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 2148)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:31:45 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 35ms (Views: 29.9ms | ActiveRecord: 1.9ms | Allocations: 14560)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:31:45 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.7ms | Allocations: 4482)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:36:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2128)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:36:39 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 24.0ms | ActiveRecord: 0.6ms | Allocations: 5888)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:36:39 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:46 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 2128)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:46 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 14.3ms | ActiveRecord: 0.5ms | Allocations: 5888)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:46 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 2128)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.5ms | Allocations: 5888)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.2ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 36ms (Views: 34.5ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.3ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 19.1ms | ActiveRecord: 0.3ms | Allocations: 1020)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 23.7ms | ActiveRecord: 1.0ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 33ms (Views: 32.5ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.5ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 26ms (Views: 25.0ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.8ms | ActiveRecord: 0.2ms | Allocations: 2114)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 25ms (Views: 24.8ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:39:48 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:11 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:11 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:39 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:39 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 17.4ms | ActiveRecord: 0.7ms | Allocations: 5890)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.7ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 8.7ms | ActiveRecord: 0.8ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.1ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:41 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.3ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:42 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:42 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 5888)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:43 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:44 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:40:45 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:40:45 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:41:10 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:41:10 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:29 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:29 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 23ms (Views: 22.4ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 39ms (Views: 38.4ms | ActiveRecord: 0.5ms | Allocations: 5890)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 22.9ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:30 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:31 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:31 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:33 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:33 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 21ms (Views: 20.7ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:49 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:49 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 5890)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:50 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:50 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.5ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.9ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.4ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (8.0ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 6.0ms | ActiveRecord: 8.5ms | Allocations: 5890)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:51 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:43:59 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:43:59 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:44:00 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:44:00 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:44:00 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:44:00 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:44:01 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:44:01 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.8ms | ActiveRecord: 0.4ms | Allocations: 5887)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:46:21 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 691)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:46:22 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:46:22 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:46:22 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:47:35 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.3ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:47:35 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 27ms (Views: 26.2ms | ActiveRecord: 0.8ms | Allocations: 5887)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:47:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:47:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 30ms (Views: 29.3ms | ActiveRecord: 0.7ms | Allocations: 5890)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:47:46 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 691)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:47:47 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:47:47 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.8ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:47:47 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:57:16 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 3536)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:57:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:57:18 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 11.4ms | ActiveRecord: 0.7ms | Allocations: 11072)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:57:18 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.4ms | ActiveRecord: 0.2ms | Allocations: 4259)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:57:52 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:57:53 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:57:53 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 17.3ms | ActiveRecord: 0.6ms | Allocations: 5890)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:57:53 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 16:58:12 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 691)
+
+
+Started GET "/users" for ::1 at 2020-03-25 16:58:13 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 16:58:13 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 16:58:13 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:06:36 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 8ms (Views: 2.5ms | ActiveRecord: 0.3ms | Allocations: 706)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:06:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.3ms | Allocations: 2128)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:06:39 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: 26.7ms | ActiveRecord: 0.6ms | Allocations: 5917)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:06:39 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 1034)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:06:54 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:06:54 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:06:54 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.5ms | Allocations: 5887)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:06:54 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:07:04 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:07:04 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 8.5ms | ActiveRecord: 0.7ms | Allocations: 5887)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:07:13 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:07:13 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:07:13 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.5ms | Allocations: 5888)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:07:13 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:08:18 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"doug", "user"=>{"name"=>"doug"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "doug"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.2ms | Allocations: 690)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:08:19 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 2111)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:08:19 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 32ms (Views: 31.3ms | ActiveRecord: 0.6ms | Allocations: 5890)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:08:19 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1017)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:12:08 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 6.5ms | ActiveRecord: 0.9ms | Allocations: 6824)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:12:28 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 3608)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:12:29 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.2ms | Allocations: 2126)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:12:29 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 13.1ms | ActiveRecord: 1.3ms | Allocations: 11540)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:12:29 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.4ms | Allocations: 4379)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:12:35 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:9:in `create'
+  [1m[36mMedia Create (0.5ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "fgfgfg"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:12:35.373480"], ["updated_at", "2020-03-25 22:12:35.373480"]]
+  ↳ app/controllers/media_controller.rb:9:in `create'
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:9:in `create'
+  [1m[35m (1.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:9:in `create'
+Completed 500 Internal Server Error in 73ms (ActiveRecord: 3.5ms | Allocations: 15550)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:9:in `create'
+Started GET "/media" for ::1 at 2020-03-25 17:12:52 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1014)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:14:57 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+Completed 500 Internal Server Error in 110ms (ActiveRecord: 0.7ms | Allocations: 76625)
+
+
+  
+NameError (undefined local variable or method `post' for #<MediaController:0x00007fd530641a38>):
+  
+app/controllers/media_controller.rb:8:in `create'
+Started POST "/media" for ::1 at 2020-03-25 17:14:59 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+Completed 500 Internal Server Error in 165ms (ActiveRecord: 0.0ms | Allocations: 70546)
+
+
+  
+NameError (undefined local variable or method `post' for #<MediaController:0x00007fd5329e4558>):
+  
+app/controllers/media_controller.rb:8:in `create'
+Started POST "/media" for ::1 at 2020-03-25 17:15:27 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/Users/homepro/Development/code/photoroid/photoroid-project/photoroid-backend/app/controllers/media_controller.rb:13: syntax error, unexpected end, expecting end-of-input):
+  
+app/controllers/media_controller.rb:13: syntax error, unexpected end, expecting end-of-input
+app/controllers/media_controller.rb:13: syntax error, unexpected end, expecting end-of-input
+Started POST "/media" for ::1 at 2020-03-25 17:15:47 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fgfgfg", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+Completed 500 Internal Server Error in 119ms (ActiveRecord: 0.6ms | Allocations: 76663)
+
+
+  
+NameError (undefined local variable or method `post' for #<MediaController:0x00007fd534022ab8>):
+  
+app/controllers/media_controller.rb:9:in `create'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:16:02 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 3662)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:16:02 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:16:02 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 17ms (Views: 12.7ms | ActiveRecord: 1.4ms | Allocations: 11555)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:16:02 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.4ms | Allocations: 4382)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:16:16 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fdf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fdf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+Completed 500 Internal Server Error in 115ms (ActiveRecord: 0.0ms | Allocations: 70547)
+
+
+  
+NameError (undefined local variable or method `post' for #<MediaController:0x00007fd530693ab8>):
+  
+app/controllers/media_controller.rb:9:in `create'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:17:09 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 3653)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:17:11 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:17:11 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 13.5ms | ActiveRecord: 1.5ms | Allocations: 11537)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:17:11 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.5ms | Allocations: 4379)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:17:17 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fd", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fd", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms | Allocations: 4195)
+
+
+  
+NoMethodError (undefined method `creat' for #<Class:0x00007fd530693ef0>
+Did you mean?  create
+               create!):
+  
+app/controllers/media_controller.rb:7:in `create'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:17:49 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 3653)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:17:50 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:17:50 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 12.1ms | ActiveRecord: 1.3ms | Allocations: 11537)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:17:50 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 1.3ms | Allocations: 4379)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:17:56 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fdfdaf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fdfdaf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mMedia Create (4.1ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "fdfdaf"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:17:56.472362"], ["updated_at", "2020-03-25 22:17:56.472362"]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 6.4ms | Allocations: 14886)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:7:in `create'
+Started GET "/media" for ::1 at 2020-03-25 17:18:16 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 1053)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:17 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:17 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:18 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:18 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 10ms (Views: 9.4ms | ActiveRecord: 0.2ms | Allocations: 1018)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:19 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.2ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:20 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:21 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.2ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:21 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-25 17:18:21 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 1015)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:18:32 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fdfdaf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"fdfdaf", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mMedia Create (0.4ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "fdfdaf"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:18:32.810353"], ["updated_at", "2020-03-25 22:18:32.810353"]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.2ms | Allocations: 4690)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:7:in `create'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:24:05 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 3536)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:24:06 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 2127)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:24:06 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 11.9ms | ActiveRecord: 0.7ms | Allocations: 11072)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:24:06 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.9ms | ActiveRecord: 0.2ms | Allocations: 4294)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:24:20 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"something", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"something", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mMedia Create (0.4ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "something"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:24:20.093410"], ["updated_at", "2020-03-25 22:24:20.093410"]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 1.1ms | Allocations: 13928)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mMedia Load (0.4ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 2], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:36:02 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 0.8ms | Allocations: 4263)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:36:03 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 2147)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:36:03 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 28ms (Views: 23.3ms | ActiveRecord: 1.4ms | Allocations: 14478)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:36:03 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.4ms | Allocations: 4482)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:36:17 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"mm", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"mm", "media"=>"C:\\fakepath\\10700012 copy.JPG", "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mMedia Create (0.4ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "mm"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:36:17.985789"], ["updated_at", "2020-03-25 22:36:17.985789"]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 2.5ms | Allocations: 18148)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:7:in `create'
+Started POST "/users/log_user_in" for ::1 at 2020-03-25 17:36:43 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 3664)
+
+
+Started GET "/users" for ::1 at 2020-03-25 17:36:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms | Allocations: 2144)
+
+
+Started GET "/boards" for ::1 at 2020-03-25 17:36:43 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 2]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 3]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 4]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 12.2ms | ActiveRecord: 1.2ms | Allocations: 11542)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-25 17:36:43 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.5ms | Allocations: 4379)
+
+
+Started POST "/media" for ::1 at 2020-03-25 17:36:49 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"gfg", "media"=>"C:\\fakepath\\10700008 copy.JPG", "board_id"=>1, "medium"=>{"title"=>"gfg", "media"=>"C:\\fakepath\\10700008 copy.JPG", "board_id"=>1}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mMedia Create (0.3ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "gfg"], ["likes", "0"], ["board_id", 1], ["created_at", "2020-03-25 22:36:49.099661"], ["updated_at", "2020-03-25 22:36:49.099661"]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[36mActiveStorage::Blob Load (0.1ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" INNER JOIN "active_storage_attachments" ON "active_storage_blobs"."id" = "active_storage_attachments"."blob_id" WHERE "active_storage_attachments"."record_id" = ? AND "active_storage_attachments"."record_type" = ? AND "active_storage_attachments"."name" = ? LIMIT ?[0m  [["record_id", 3], ["record_type", "Media"], ["name", "media"], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:7:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/media_controller.rb:7:in `create'
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 2.1ms | Allocations: 14297)
+
+
+  
+ActiveSupport::MessageVerifier::InvalidSignature (ActiveSupport::MessageVerifier::InvalidSignature):
+  
+app/controllers/media_controller.rb:7:in `create'
