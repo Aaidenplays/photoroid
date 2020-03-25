@@ -20,19 +20,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     /* Header navigation handling */
       const headerHandler = () => {
-        el('feed-header').addEventListener("click", (e) => {
+
+        el('feed-header').addEventListener('click',(e)=>{
+
           e.preventDefault();
 
         });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
-          setu1ForBoard();
+
+           setu1ForBoard();
         });
-        el('friends-header').addEventListener("click",(e)=>{ 
+        el('friends-header').addEventListener("click",(e)=>{
           e.preventDefault();
           console.log("ITS HAPPENING")
           getFriends(e)});
-        el('users-header').addEventListener("click", (e) => { 
+        el('users-header').addEventListener("click", (e) => {
           e.preventDefault();
           getUsers(e.target.dataset.id);
         });
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             status: "accepted"
           })
         }).then(getFriends())
-        
+
       }
       const handleDeclineBtn = (target) => {
         console.log(`DECLINE-TARGET: ${target}`);
@@ -106,13 +109,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
             status: "active",
             user_id: user.id,
             board_id: data
+
           })
         })
       }
       const postBoard = (user) => {
         const title = el('board-title');
-        const desc = el('board-description');      
+
+        const desc = el('board-description');
         const u1 = currentUser;
+
         // console.log(`another USer: ${u1}`)
         fetch('http://localhost:3000/boards', {
           method: 'POST',
@@ -120,12 +126,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
           body: JSON.stringify({
             description: desc.value,
             title: title.value
+
           })
         }).then(resp => resp.json())
         .then(data => postUserBoard(data.id,u1))
-        
+
         //INSERT VIEW BOARD HERE
-        
+
       }
       const handleBoardSubmitBtn = (e) => {
         e.preventDefault();
@@ -204,6 +211,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
               <label for="description">Description</label>
               <textarea id="board-description" name="description" rows ='10' cols='30'></textarea>
               <br>
+              <label for='file'> Upload Board media </label>
+              <input id='img-input' type='file' name='file'>
               <input id= 'create-board-submit-btn' type='submit' value='Submit'>
             </form>
             <br>
@@ -256,8 +265,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
               li.append(title);
               li.append(description);
               li.append(inviteBtn);
-              container.append(li);
-            }            
+              container.append(li)
+            }
           })
         })
         getUserBoardsForRequestsRendering();
@@ -272,7 +281,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             let message = document.createElement('p')
             let acceptBoardRequestBtn = document.createElement('button');
             let declineBoardRequestBtn = document.createElement('button');
-            
+
             /* initialize variables */
             acceptBoardRequestBtn.dataset.boardId = userBoard.id;
             declineBoardRequestBtn.dataset.boardId = userBoard.id;
@@ -328,7 +337,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
           console.log(`receiver: ${request.receiver.id}`)
           /* Accepted friends */
           if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'accepted'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
             let inviteBtn = document.createElement('button');
@@ -359,13 +368,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(inviteBtn);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            container.append(li); 
+            container.append(li);
           }
           else if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'pending'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
-            
+
             /* buttons */
             let acceptBtn = document.createElement('button');
             acceptBtn.innerText = "Accept";
@@ -394,7 +403,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(bio);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            pendingContainer.append(li); 
+            pendingContainer.append(li);
           }
         })
       }

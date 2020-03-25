@@ -21,8 +21,12 @@ class UserBoardsController < ApplicationController
         render json: user_board
     end
     def create
-        user_board = UserBoard.create(status: params[:status], user_id: params[:user_id], board_id: params[:board_id])
+        user_board = UserBoard.create(status: params[:status], user_id: session[:user_id], board_id: params[:board_id])
         render json: user_board
+    end
+
+    def board_params
+      params.require(:board).permit()
     end
 end
 

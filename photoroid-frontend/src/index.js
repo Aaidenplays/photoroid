@@ -10,7 +10,7 @@ let userThing;
 document.addEventListener('DOMContentLoaded', ()=>{
       console.log('Hey there Cowboy!');
       // headerHandler();
-      loadFriends();
+      // loadFriends();
       // getUsers();
 
 el('new-login').addEventListener('click', (event)=>{
@@ -102,6 +102,8 @@ function createUser(userObj){
   .then(r=>r.json())
   .then(json=>{
     currentUser = json
+    el('new-user').innerHTML ='';
+    loginUser(currentUser.name);
   })
 
 }
@@ -119,8 +121,17 @@ function loginUser(name){
     currentUser = json
 
     let pageHeader = el('h3-id')
+    el('new-user').innerHTML=''
     pageHeader.innerText = currentUser.name
-    let newJs = document.createElement('script')
+    let signOutBtn = document.createElement('button')
+    signOutBtn.setAttribute('id', 'sign-out')
+    signOutBtn.innerText = 'Sign Out'
+    pageHeader.append(signOutBtn)
+    signOutBtn.addEventListener('click', (e)=>{
+      signOut();
+    })
+
+    // let newJs = document.createElement('script')
     // newJs.setAttribute('src','src/java.js')
   });
 }
@@ -134,4 +145,8 @@ function getIdByName(nameU){
     ).id);
 
   });
+}
+function signOut(){
+  location.reload()
+  // currentUser ='';
 }
