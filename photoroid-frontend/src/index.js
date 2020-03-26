@@ -166,6 +166,10 @@ function addPostForm(){
     let title = event.target.children[1].value
 
     let media = event.target.children[3].value
+    console.log('Media file:------')
+    console.log(event.target.children[3].files)
+
+    console.log(media)
     addPost(title,media);
   })
   // add func to handle meia post requests
@@ -173,7 +177,9 @@ function addPostForm(){
 function addPost(postTitle,postMedia){
   fetch('http://localhost:3000/media', {
     method: 'POST',
-    headers: headers,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
     body: JSON.stringify({
       title: postTitle,
       media: postMedia,
