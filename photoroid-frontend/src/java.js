@@ -1,6 +1,8 @@
 
-let board;
-let friend;
+
+
+let board = 0;
+let friend = 0;
 
 
 
@@ -20,22 +22,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     /* Header navigation handling */
       const headerHandler = () => {
-
-        el('feed-header').addEventListener('click',(e)=>{
-
+        el('feed-header').addEventListener("click", (e) => {
           e.preventDefault();
 
         });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
-
-           setu1ForBoard();
+          setu1ForBoard();
         });
-        el('friends-header').addEventListener("click",(e)=>{
+        el('friends-header').addEventListener("click",(e)=>{ 
           e.preventDefault();
-          console.log("ITS HAPPENING")
           getFriends(e)});
-        el('users-header').addEventListener("click", (e) => {
+        el('users-header').addEventListener("click", (e) => { 
           e.preventDefault();
           getUsers(e.target.dataset.id);
         });
@@ -48,13 +46,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     /* Add friend handler  */
       const postFriendRequest = (data,target) => {
         //replace all u1 with current_user
-        console.log(`HEADERS: ${headers}`)
-          console.log(data)
-          console.log(`target: ${target}`)
           const u1 = currentUser;
           const u2 = target;
-          console.log(`u1: ${u1.id}`);
-          console.log(`u2: ${u2}`);
           fetch('http://localhost:3000/friend_requests',{
             method: 'POST',
             headers: {
@@ -69,7 +62,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
           })
       }
       const handleAddFriend = (e) => {
-        // console.log(`e: ${e.target.dataset.id}`)
         fetch('http://localhost:3000/users')
         .then(resp => resp.json())
         .then(data => postFriendRequest(data,e.target.dataset.id))
@@ -77,7 +69,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     /* Friend request button handlers */
       const handleAcceptBtn = (target) => {
-        console.log(`ACCEPT-TARGET: ${target}`);
         fetch(`http://localhost:3000/friend_requests/${target}`, {
           method: 'PATCH',
           headers: {
@@ -89,10 +80,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
             status: "accepted"
           })
         }).then(getFriends())
-
+        
       }
       const handleDeclineBtn = (target) => {
-        console.log(`DECLINE-TARGET: ${target}`);
         fetch(`http://localhost:3000/friend_requests/${target}`, {
           method: 'DELETE'
         }).then(getFriends())
@@ -100,8 +90,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     /* Board form submit handler */
       const postUserBoard = (data,user) => {
-        console.log(`USER: ${user}`)
-        console.log(`DATA: ${data}`)
         fetch('http://localhost:3000/user_boards', {
           method: 'POST',
           headers,
@@ -109,30 +97,25 @@ document.addEventListener('DOMContentLoaded', ()=>{
             status: "active",
             user_id: user.id,
             board_id: data
-
           })
         })
       }
       const postBoard = (user) => {
         const title = el('board-title');
-
-        const desc = el('board-description');
+        const desc = el('board-description');      
         const u1 = currentUser;
-
-        // console.log(`another USer: ${u1}`)
         fetch('http://localhost:3000/boards', {
           method: 'POST',
           headers,
           body: JSON.stringify({
             description: desc.value,
             title: title.value
-
           })
         }).then(resp => resp.json())
         .then(data => postUserBoard(data.id,u1))
-
+        
         //INSERT VIEW BOARD HERE
-
+        
       }
       const handleBoardSubmitBtn = (e) => {
         e.preventDefault();
@@ -142,9 +125,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
       }
     /* Invite handler */
-      const postBoardRequest = (friend, board) => {
-        console.log(friend);
-        console.log(board);
+      const postBoardRequest = () => {
         fetch('http://localhost:3000/user_boards', {
           method: 'POST',
           headers,
@@ -153,27 +134,30 @@ document.addEventListener('DOMContentLoaded', ()=>{
             user_id: friend,
             board_id: board
           })
+        }).then(() => {
+          console.log("we made it this far")
+          board = 0;
+          friend = 0;
         })
-        board = null;
-        friend = null;
       }
 
       const boardList = (board) => {
-        console.log(board)
         return fetch(`http://localhost:3000/user_boards`)
         .then(resp => resp.json())
       }
-      const handleInviteBtn = (target, friend) => {
-        console.log('maybe')
-        if (!board) {
-          console.log("YES!")
+      const handleInviteBtn = () => {
+        console.log(`BOARD: ${board}`);
+        console.log(`FRIEND: ${friend}`);
+        if (board == 0) {
+          console.log("getting boards")
           getBoards(currentUser);
+          return;
         }
-        console.log(`TARGET:${target}`)
-        if (!target){
+        if (friend == 0){
+          console.log("getting friends");
           getFriends();
+          return
         }
-        board = target
         let userBoardFound
         boardList(board).then(data => {
           data.forEach(userBoard => {
@@ -183,14 +167,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
           })
         console.log(`FOUND THIS USER BOARD: ${JSON.stringify(userBoardFound)}`)
         //function to get user board
-        if (!friend){
-          //need to pass in an event argument here
-          //getFriends();
-        }
-        else {
           postBoardRequest(friend, board);
-        }
         });
+      }
+      const handleAcceptBoardRequestBtn = (userBoardId) => {
+        fetch(`http://localhost:3000/user_boards/${userBoardId}`,{
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({
+          id: userBoardId,
+          status: "active"
+        }) 
+      }).then(getBoards(currentUser));
+      }
+      const handleDeclineBoardRequestBtn = (userBoardId) => {
+        fetch(`http://localhost:3000/user_boards/${userBoardId}`,{
+        method: 'DELETE'
+        }).then(getBoards(currentUser));
       }
 /* Rendering Functions */
 
@@ -211,8 +204,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
               <label for="description">Description</label>
               <textarea id="board-description" name="description" rows ='10' cols='30'></textarea>
               <br>
-              <label for='file'> Upload Board media </label>
-              <input id='img-input' type='file' name='file'>
               <input id= 'create-board-submit-btn' type='submit' value='Submit'>
             </form>
             <br>
@@ -238,15 +229,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const container = el('board-list');
         container.innerHTML = '';
 
-        console.log(boards);
 
-        boards.forEach(board => { //YOU NEED TO CHECK FOR USERBOARD.STATUS == APPROVED
-          console.log(`USER::::${user.id}`);
-          board.users.forEach(iUser => {
-            console.log(board)
-            console.log(`iUsers:${iUser.id}`);
+        boards.forEach(iBoard => { //YOU NEED TO CHECK FOR USERBOARD.STATUS == APPROVED
+          iBoard.users.forEach(iUser => {
             if (iUser.id == user.id){
-              console.log(`its working!!!!!${board}`);
               /* creating elements */
               let li = document.createElement('li');
               let title = document.createElement('h1');
@@ -254,46 +240,47 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 /* invite button */
               let inviteBtn = document.createElement('button');
               inviteBtn.innerText = 'Invite Friend';
-              inviteBtn.dataset.boardId = board.id;
+              inviteBtn.dataset.boardId = iBoard.id;
               inviteBtn.type = ('button')
               inviteBtn.style = ('color:blue; background-color:orange');
-              inviteBtn.addEventListener("click", (e) => handleInviteBtn(e.target.dataset.boardId, friend));
+              inviteBtn.addEventListener("click", (e) => {
+                board = e.target.dataset.boardId;
+                handleInviteBtn();
+              });
               /* initializing elements */
-              title.innerText = board.title;
-              description.innerText = board.description;
+              title.innerText = iBoard.title;
+              description.innerText = iBoard.description;
               /* appending */
               li.append(title);
               li.append(description);
               li.append(inviteBtn);
-              container.append(li)
-            }
+              container.append(li);
+            }            
           })
         })
         getUserBoardsForRequestsRendering();
       }
       const renderUserBoardRequests = (userBoards) => {
         const container = el('board-requests-pending');
+        container.innerHTML = '';
         userBoards.forEach(userBoard => {
           if (userBoard.user_id == currentUser.id && userBoard.status == "pending"){
-            console.log(`I HAVE BEEN RENDERED!!!!!!`)
             /* declare element variables */
             let li = document.createElement('li');
             let message = document.createElement('p')
             let acceptBoardRequestBtn = document.createElement('button');
             let declineBoardRequestBtn = document.createElement('button');
-
+            
             /* initialize variables */
-            acceptBoardRequestBtn.dataset.boardId = userBoard.id;
-            declineBoardRequestBtn.dataset.boardId = userBoard.id;
+            acceptBoardRequestBtn.dataset.userBoardId = userBoard.id;
+            declineBoardRequestBtn.dataset.userBoardId = userBoard.id;
             acceptBoardRequestBtn.innerText = 'Accept'
             declineBoardRequestBtn.innerText = 'Decline'
-            console.log(`userBoard.id:: ${userBoard.board_id}`)
             getBoardData(userBoard.board_id).then(datas => {
                 /* button logic */
-              console.log(datas)
               message.innerText = `You have ben invited to ${datas.title}!`;
-              acceptBoardRequestBtn.addEventListener("click", () => handleAcceptBoardRequestBtn());
-              declineBoardRequestBtn.addEventListener("click", () => handleDeclineBoardRequestBtn());
+              acceptBoardRequestBtn.addEventListener("click", (e) => handleAcceptBoardRequestBtn(e.target.dataset.userBoardId));
+              declineBoardRequestBtn.addEventListener("click", (e) => handleDeclineBoardRequestBtn(e.target.dataset.userBoardId));
 
               /* append elements */
               li.append(message);
@@ -317,12 +304,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
     /* Friends list */
       const renderFriends = (data,target) => {
-        console.log(data);
-        console.log(`target: ${target}`);
         const u1 = currentUser;
         const u2 = target;
-        console.log(`U1:::::${u1.id}`);
-        console.log(`u2: ${u2}`);
         /* clearing the trash */
         el('board-list').innerHTML = '';
         const container = el('friends-list');
@@ -333,17 +316,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
         container.innerHTML = '';
         pendingContainer.innerHTML = '';
         data.forEach(request => {
-          console.log(`requestor: ${request.requestor.id}`)
-          console.log(`receiver: ${request.receiver.id}`)
           /* Accepted friends */
           if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'accepted'){
-            let li = document.createElement('li');
+            let li = document.createElement('li'); 
             let name = document.createElement('h1');
             let bio = document.createElement('p');
             let inviteBtn = document.createElement('button');
 
             //make if statment for requestor or receiver
-            console.log(request)
             if (request.requestor.id != u1.id){
               name = request.requestor.name;
               bio = request.requestor.bio;
@@ -359,8 +339,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
               friend = request.receiver.id;
             }
             inviteBtn.addEventListener("click", () => {
-              console.log('i was clicked')
-              handleInviteBtn(board, friend)
+              handleInviteBtn()
             });
             li.append(name);
             li.append(document.createElement('p'))
@@ -368,13 +347,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(inviteBtn);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            container.append(li);
+            container.append(li); 
           }
           else if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'pending'){
-            let li = document.createElement('li');
+            let li = document.createElement('li'); 
             let name = document.createElement('h1');
             let bio = document.createElement('p');
-
+            
             /* buttons */
             let acceptBtn = document.createElement('button');
             acceptBtn.innerText = "Accept";
@@ -387,7 +366,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
             /* /buttons */
 
             //make if statment for requestor or receiver
-            console.log(request)
             if (request.requestor.id != u1.id){
               name = request.requestor.name;
               bio = request.requestor.bio;
@@ -403,7 +381,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(bio);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            pendingContainer.append(li);
+            pendingContainer.append(li); 
           }
         })
       }
@@ -450,3 +428,4 @@ document.addEventListener('DOMContentLoaded', ()=>{
         .then(resp => resp.json())
         .then(data => renderUsers(data))
       }
+
