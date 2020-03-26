@@ -4,7 +4,9 @@ class MediaController < ApplicationController
         render json: medias
     end
       def create
-          media = Media.create!(likes: 0, title: params[:title], board_id: params[:board_id], media: params[:media])
+          media = Media.new(likes: 0, title: params[:title], board_id: params[:board_id])
+          media.media.attach(io: File.open(params[:media]))
+          media.save
           render json: media
 
 
