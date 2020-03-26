@@ -150,10 +150,13 @@ function signOut(){
   location.reload()
   // currentUser ='';
 }
-function addPostForm(){
-  let boardDiv = el('board-form');
+function addPostForm(id){
+ let boardDiv = el('board-form');
 
-  boardDiv.innerHTML = `<form id='post-data'>
+  boardDiv.innerHTML = `<form id='post-data' action='http://localhost:3000/media'
+                          enctype='multipart/form-data'
+                          method='post'>
+  <input for='id' type='hidden' name='id'>
   <label for='title'> Title </label>
   <input for='title' name='title' type='text'>
   <label for='file'> Upload Board media </label>
@@ -161,29 +164,33 @@ function addPostForm(){
   <input type='submit' value='Submit Post'>
   </form>
   `;
-  el('post-data').addEventListener('submit', (event)=>{
-    event.preventDefault();
-    let title = event.target.children[1].value
-
-    let media = event.target.children[3].value
-    console.log('Media file:------')
-    console.log(event.target.children[3].files)
-
-    console.log(media)
-    addPost(title,media);
-  })
+  el('post-data').id.value = id
+  // el('post-data').addEventListener('submit', (event)=>{
+  //   event.preventDefault();
+  //   let title = event.target.title.value
+  //
+  //   let boardId = id
+  //
+  //   let media = event.target.file.value
+  //   console.log('Media file:------')
+  //
+  //
+  //   addPost(title,media,boardId);
+  // })
   // add func to handle meia post requests
 }
-function addPost(postTitle,postMedia){
+function addPost(postTitle,postMedia, id){
   fetch('http://localhost:3000/media', {
     method: 'POST',
     headers: {
       'Content-Type': 'multipart/form-data'
+
     },
     body: JSON.stringify({
       title: postTitle,
       media: postMedia,
-      board_id: 1
-    })
+      board_id: id
+    }),
+
   })
 }
