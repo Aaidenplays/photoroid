@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         });
         el('my-boards-header').addEventListener("click",(e)=>{
           e.preventDefault();
-          setu1ForBoard();
+           setu1ForBoard();
         });
         el('friends-header').addEventListener("click",(e)=>{ 
           e.preventDefault();
@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         .then(data => {
           const u1 = currentUser;
           getBoards(u1)
+
         })
       }
       const renderBoards = (boards, user) => {
@@ -258,8 +259,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }            
           })
         })
+
         getUserBoardsForRequestsRendering();
+          // Jack added: March 25th
+        el('new-user').innerHTML = `<button id='post-button'>Add Post</button>`
+        el('post-button').addEventListener('click',()=>{
+          el('new-user').innerHTML=''
+            addPostForm();
+        })
+        // add post button and event listener for submiting form id is "post-data"
       }
+
+
       const renderUserBoardRequests = (userBoards) => {
         const container = el('board-requests-pending');
         container.innerHTML = '';
