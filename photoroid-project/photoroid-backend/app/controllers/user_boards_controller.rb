@@ -29,16 +29,3 @@ class UserBoardsController < ApplicationController
       params.require(:board).permit()
     end
 end
-
-# def destroy
-#     friend_request = FriendRequest.find_by(id: params[:id])
-#     puts("you made it to backend!")
-#     friend_request.destroy
-#     render json: friend_request
-#   end
-
-#   def update
-#     friend_request = FriendRequest.find_by(id: params[:id])
-#     friend_request.update(status: params[:status])
-#     render json: friend_request
-#   end
