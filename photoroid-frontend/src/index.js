@@ -65,6 +65,7 @@ console.log('You clicked the button')
           event.preventDefault();
           console.log(el('name').value);
           loginUser(el('name').value);
+
           // getIdByName(el('name').value);
       });
 
@@ -119,10 +120,16 @@ function loginUser(name){
   .then(r => r.json())
   .then(json => {
     currentUser = json
+    document.body.innerHTML += `  <a id='feed-header' href="">Feed</a>
+      <a id='my-boards-header'class="active" href="">My Boards</a>
+      <a id='friends-header' href="">Friends</a>
+      <a id='users-header' href="">Users</a>
+      <a id='create-boards-header' href="">Create Board</a>`
+      headerHandler();
 
     let pageHeader = el('h3-id')
     el('new-user').innerHTML=''
-    pageHeader.innerText = currentUser.name
+     pageHeader.innerText = currentUser.name
     let signOutBtn = document.createElement('button')
     signOutBtn.setAttribute('id', 'sign-out')
     signOutBtn.innerText = 'Sign Out'

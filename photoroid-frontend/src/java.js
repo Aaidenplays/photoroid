@@ -7,7 +7,7 @@ let friend = 0;
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    headerHandler();
+    
 })
 /*helper functions */
     function el(id){

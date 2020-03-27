@@ -7559,3 +7559,1052 @@ Completed 200 OK in 5ms (Views: 4.6ms | ActiveRecord: 0.1ms | Allocations: 2044)
 Completed 200 OK in 10ms (Views: 8.9ms | ActiveRecord: 0.7ms | Allocations: 4510)
 
 
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200323194153)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "bio" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323194153"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateFriendRequests (20200323194339)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "friend_requests" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "requestor_id" integer, "receiver_id" integer, "status" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323194339"]]
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateBoards (20200323203739)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "boards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar, "title" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323203739"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUserBoards (20200323204125)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "user_boards" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "status" varchar, "user_id" integer, "board_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323204125"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateMedia (20200323205217)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "media" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "likes" integer, "image" varchar, "board_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323205217"]]
+  [1m[35m (0.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20200323205234)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar, "media_id" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200323205234"]]
+  [1m[35m (2.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateActiveStorageTables (20200325183249)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "key" varchar NOT NULL, "filename" varchar NOT NULL, "content_type" varchar, "metadata" text, "byte_size" bigint NOT NULL, "checksum" varchar NOT NULL, "created_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "record_type" varchar NOT NULL, "record_id" integer NOT NULL, "blob_id" integer NOT NULL, "created_at" datetime NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20200325183249"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-03-27 16:35:38.534775"], ["updated_at", "2020-03-27 16:35:38.534775"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:36:47 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+No template found for UsersController#log_user_in, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 0.8ms | Allocations: 2446)
+
+
+Started POST "/users" for ::1 at 2020-03-27 11:37:12 -0500
+Processing by UsersController#create as JSON
+  Parameters: {"name"=>"Jack Parker", "bio"=>"Poster", "user"=>{"name"=>"Jack Parker", "bio"=>"Poster"}}
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[36mCACHE User Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:14:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:14:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "bio", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Jack Parker"], ["bio", "Poster"], ["created_at", "2020-03-27 16:37:12.517170"], ["updated_at", "2020-03-27 16:37:12.517170"]]
+  ↳ app/controllers/users_controller.rb:14:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:14:in `create'
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 2.0ms | Allocations: 7474)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:37:12 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 769)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:37:21 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 877)
+
+
+Started POST "/boards" for ::1 at 2020-03-27 11:37:21 -0500
+Processing by BoardsController#create as JSON
+  Parameters: {"description"=>"new", "title"=>"Nothing ", "board"=>{"description"=>"new", "title"=>"Nothing "}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[36mBoard Create (0.6ms)[0m  [1m[32mINSERT INTO "boards" ("description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["description", "new"], ["title", "Nothing "], ["created_at", "2020-03-27 16:37:21.794880"], ["updated_at", "2020-03-27 16:37:21.794880"]]
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/boards_controller.rb:8:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 5198)
+
+
+Started POST "/user_boards" for ::1 at 2020-03-27 11:37:21 -0500
+Processing by UserBoardsController#create as JSON
+  Parameters: {"status"=>"active", "user_id"=>1, "board_id"=>1, "user_board"=>{"status"=>"active", "user_id"=>1, "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mUserBoard Create (0.9ms)[0m  [1m[32mINSERT INTO "user_boards" ("status", "user_id", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["status", "active"], ["user_id", 1], ["board_id", 1], ["created_at", "2020-03-27 16:37:21.829620"], ["updated_at", "2020-03-27 16:37:21.829620"]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 2.5ms | Allocations: 9314)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:37:22 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 858)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:37:22 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.8ms | Allocations: 6639)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:37:22 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+Started GET "/media" for ::1 at 2020-03-27 11:37:22 -0500
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 1231)
+
+
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 1ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 776)
+
+
+Started POST "/media" for ::1 at 2020-03-27 11:37:38 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"fdfdf", "image"=>"https://i.kym-cdn.com/entries/icons/original/000/019/698/d96.jpg", "board_id"=>1, "medium"=>{"title"=>"fdfdf", "image"=>"https://i.kym-cdn.com/entries/icons/original/000/019/698/d96.jpg", "board_id"=>1}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mMedia Create (0.5ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "image", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "fdfdf"], ["likes", 0], ["image", "https://i.kym-cdn.com/entries/icons/original/000/019/698/d96.jpg"], ["board_id", 1], ["created_at", "2020-03-27 16:37:38.741553"], ["updated_at", "2020-03-27 16:37:38.741553"]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 1.6ms | Allocations: 7612)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:37:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:37:40 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.4ms | Allocations: 3161)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:37:40 -0500
+Started GET "/user_boards" for ::1 at 2020-03-27 11:37:40 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 200 OK in 2ms (Views: 2.2ms | ActiveRecord: 0.1ms | Allocations: 1006)
+
+
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 942)
+
+
+Started POST "/media" for ::1 at 2020-03-27 11:40:16 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"something", "image"=>"https://www.google.com/search?q=kronk+meme&tbm=isch&ved=2ahUKEwjIlN7z-LroAhVRQa0KHTwCBfUQ2-cCegQIABAA&oq=kronk+meme&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEENQwRBY1xhg1BtoAHAAeACAAVKIAdkCkgEBNZgBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ei=Txh-XoixMNGCtQW8hJSoDw&bih=732&biw=1090&rlz=1C5CHFA_enUS830FR857#imgrc=Fj9zqoud4iINKM", "board_id"=>1, "medium"=>{"title"=>"something", "image"=>"https://www.google.com/search?q=kronk+meme&tbm=isch&ved=2ahUKEwjIlN7z-LroAhVRQa0KHTwCBfUQ2-cCegQIABAA&oq=kronk+meme&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEENQwRBY1xhg1BtoAHAAeACAAVKIAdkCkgEBNZgBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ei=Txh-XoixMNGCtQW8hJSoDw&bih=732&biw=1090&rlz=1C5CHFA_enUS830FR857#imgrc=Fj9zqoud4iINKM", "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mMedia Create (0.9ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "image", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "something"], ["likes", 0], ["image", "https://www.google.com/search?q=kronk+meme&tbm=isch&ved=2ahUKEwjIlN7z-LroAhVRQa0KHTwCBfUQ2-cCegQIABAA&oq=kronk+meme&gs_lcp=CgNpbWcQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEENQwRBY1xhg1BtoAHAAeACAAVKIAdkCkgEBNZgBAKABAaoBC2d3cy13aXotaW1n&sclient=img&ei=Txh-XoixMNGCtQW8hJSoDw&bih=732&biw=1090&rlz=1C5CHFA_enUS830FR857#imgrc=Fj9zqoud4iINKM"], ["board_id", 1], ["created_at", "2020-03-27 16:40:16.490444"], ["updated_at", "2020-03-27 16:40:16.490444"]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 2.6ms | Allocations: 3344)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:40:24 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.0ms | ActiveRecord: 0.6ms | Allocations: 858)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:40:24 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.7ms | Allocations: 3370)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:40:24 -0500
+Started GET "/user_boards" for ::1 at 2020-03-27 11:40:24 -0500
+Processing by MediaController#index as */*
+Processing by UserBoardsController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 1460)
+
+
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.2ms | Allocations: 1984)
+
+
+Started POST "/media" for ::1 at 2020-03-27 11:40:52 -0500
+Processing by MediaController#create as JSON
+  Parameters: {"title"=>"something", "image"=>"https://imgur.com/t/funny/4Dslc8D", "board_id"=>1, "medium"=>{"title"=>"something", "image"=>"https://imgur.com/t/funny/4Dslc8D", "board_id"=>1}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[36mMedia Create (0.4ms)[0m  [1m[32mINSERT INTO "media" ("title", "likes", "image", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "something"], ["likes", 0], ["image", "https://imgur.com/t/funny/4Dslc8D"], ["board_id", 1], ["created_at", "2020-03-27 16:40:52.308056"], ["updated_at", "2020-03-27 16:40:52.308056"]]
+  ↳ app/controllers/media_controller.rb:10:in `create'
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/media_controller.rb:10:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.2ms | Allocations: 3314)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:40:55 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:40:55 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.4ms | Allocations: 3479)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:40:55 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 1254)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:40:55 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 876)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:41:07 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:41:07 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.4ms | Allocations: 3479)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:41:14 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 770)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:41:19 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.3ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:41:19 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.3ms | Allocations: 3480)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:41:19 -0500
+Started GET "/media" for ::1 at 2020-03-27 11:41:19 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.2ms | Allocations: 1757)
+
+
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.3ms | Allocations: 1725)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:41:25 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.5ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 1.8ms | ActiveRecord: 0.8ms | Allocations: 1728)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:41:37 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 0.9ms | ActiveRecord: 0.1ms | Allocations: 738)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:41:42 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.6ms | Allocations: 755)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:41:43 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 738)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:41:47 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 738)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:41:48 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 738)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:41:51 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.1ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:41:55 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started POST "/friend_requests" for ::1 at 2020-03-27 11:41:55 -0500
+Processing by FriendRequestsController#create as JSON
+  Parameters: {"requestor_id"=>1, "receiver_id"=>"1", "status"=>"pending", "friend_request"=>{"requestor_id"=>1, "receiver_id"=>"1", "status"=>"pending"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mFriendRequest Create (0.4ms)[0m  [1m[32mINSERT INTO "friend_requests" ("requestor_id", "receiver_id", "status", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["requestor_id", 1], ["receiver_id", 1], ["status", "pending"], ["created_at", "2020-03-27 16:41:55.055396"], ["updated_at", "2020-03-27 16:41:55.055396"]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+No template found for FriendRequestsController#create, rendering head :no_content
+Completed 204 No Content in 19ms (ActiveRecord: 1.9ms | Allocations: 9279)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:41:58 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms | Allocations: 843)
+
+
+Started POST "/friend_requests" for ::1 at 2020-03-27 11:41:58 -0500
+Processing by FriendRequestsController#create as JSON
+  Parameters: {"requestor_id"=>1, "receiver_id"=>"1", "status"=>"pending", "friend_request"=>{"requestor_id"=>1, "receiver_id"=>"1", "status"=>"pending"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[36mFriendRequest Create (0.4ms)[0m  [1m[32mINSERT INTO "friend_requests" ("requestor_id", "receiver_id", "status", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["requestor_id", 1], ["receiver_id", 1], ["status", "pending"], ["created_at", "2020-03-27 16:41:58.092137"], ["updated_at", "2020-03-27 16:41:58.092137"]]
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:8:in `create'
+No template found for FriendRequestsController#create, rendering head :no_content
+Completed 204 No Content in 8ms (ActiveRecord: 2.0ms | Allocations: 4140)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:01 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.5ms | ActiveRecord: 0.3ms | Allocations: 4940)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:06 -0500
+Started PATCH "/friend_requests/1" for ::1 at 2020-03-27 11:42:06 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Processing by FriendRequestsController#update as JSON
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"id"=>"1", "status"=>"accepted", "friend_request"=>{"id"=>"1", "status"=>"accepted"}}
+  [1m[36mFriendRequest Load (0.6ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests" WHERE "friend_requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:24:in `update'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 14.9ms | ActiveRecord: 0.3ms | Allocations: 6406)
+
+
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mFriendRequest Update (0.5ms)[0m  [1m[33mUPDATE "friend_requests" SET "status" = ?, "updated_at" = ? WHERE "friend_requests"."id" = ?[0m  [["status", "accepted"], ["updated_at", "2020-03-27 16:42:06.956966"], ["id", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 2.8ms | Allocations: 6643)
+
+
+Started PATCH "/friend_requests/1" for ::1 at 2020-03-27 11:42:10 -0500
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:10 -0500
+Processing by FriendRequestsController#update as JSON
+  Parameters: {"id"=>"1", "status"=>"accepted", "friend_request"=>{"id"=>"1", "status"=>"accepted"}}
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests" WHERE "friend_requests"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:24:in `update'
+Processing by FriendRequestsController#index as */*
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:25:in `update'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 7448)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 11.9ms | ActiveRecord: 0.2ms | Allocations: 8506)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:42:14 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.7ms | Allocations: 3479)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:42:14 -0500
+Started GET "/user_boards" for ::1 at 2020-03-27 11:42:14 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.2ms | Allocations: 1240)
+
+
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.2ms | Allocations: 876)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:42:23 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.1ms | Allocations: 876)
+
+
+Started POST "/user_boards" for ::1 at 2020-03-27 11:42:23 -0500
+Processing by UserBoardsController#create as JSON
+  Parameters: {"status"=>"pending", "user_id"=>1, "board_id"=>"1", "user_board"=>{"status"=>"pending", "user_id"=>1, "board_id"=>"1"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[36mUserBoard Create (0.3ms)[0m  [1m[32mINSERT INTO "user_boards" ("status", "user_id", "board_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["status", "pending"], ["user_id", 1], ["board_id", 1], ["created_at", "2020-03-27 16:42:23.197024"], ["updated_at", "2020-03-27 16:42:23.197024"]]
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:24:in `create'
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 1.9ms | Allocations: 4242)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:26 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.2ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.6ms | ActiveRecord: 0.4ms | Allocations: 4944)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:32 -0500
+Started DELETE "/friend_requests/2" for ::1 at 2020-03-27 11:42:32 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Processing by FriendRequestsController#destroy as */*
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  Parameters: {"id"=>"2"}
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFriendRequest Load (0.2ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests" WHERE "friend_requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:17:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.2ms | Allocations: 6145)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:19:in `destroy'
+  [1m[36mFriendRequest Destroy (0.5ms)[0m  [1m[31mDELETE FROM "friend_requests" WHERE "friend_requests"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/friend_requests_controller.rb:19:in `destroy'
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/friend_requests_controller.rb:19:in `destroy'
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 1.9ms | Allocations: 4520)
+
+
+Started DELETE "/friend_requests/2" for ::1 at 2020-03-27 11:42:33 -0500
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:42:33 -0500
+Processing by FriendRequestsController#destroy as */*
+Processing by FriendRequestsController#index as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  [1m[36mFriendRequest Load (0.1ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests" WHERE "friend_requests"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  ↳ app/controllers/friend_requests_controller.rb:17:in `destroy'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms | Allocations: 1825)
+
+
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/friend_requests_controller.rb:19:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.9ms | ActiveRecord: 0.2ms | Allocations: 4394)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:42:50 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 754)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:42:54 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 1ms (Views: 1.0ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:42:54 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.5ms | Allocations: 3614)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:42:54 -0500
+Started GET "/media" for ::1 at 2020-03-27 11:42:54 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.1ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+Processing by MediaController#index as */*
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms | Allocations: 1627)
+
+
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.1ms | Allocations: 1723)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:42:54 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 1218)
+
+
+Started GET "/boards/1" for ::1 at 2020-03-27 11:42:54 -0500
+Processing by BoardsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/boards_controller.rb:13:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:14:in `show'
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:14:in `show'
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 0.5ms | Allocations: 3449)
+
+
+Started PATCH "/user_boards/2" for ::1 at 2020-03-27 11:42:58 -0500
+Started GET "/boards" for ::1 at 2020-03-27 11:42:58 -0500
+Processing by UserBoardsController#update as JSON
+  Parameters: {"id"=>"2", "status"=>"active", "user_board"=>{"id"=>"2", "status"=>"active"}}
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  [1m[36mUserBoard Load (0.3ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards" WHERE "user_boards"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:14:in `update'
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/user_boards_controller.rb:15:in `update'
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 7ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 5362)
+
+
+  ↳ app/controllers/user_boards_controller.rb:15:in `update'
+  [1m[36mBoard Load (0.2ms)[0m  [1m[34mSELECT "boards".* FROM "boards" WHERE "boards"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/user_boards_controller.rb:15:in `update'
+  [1m[36mUserBoard Update (0.6ms)[0m  [1m[33mUPDATE "user_boards" SET "status" = ?, "updated_at" = ? WHERE "user_boards"."id" = ?[0m  [["status", "active"], ["updated_at", "2020-03-27 16:42:58.902866"], ["id", 2]]
+Started GET "/media" for ::1 at 2020-03-27 11:42:58 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 1219)
+
+
+  ↳ app/controllers/user_boards_controller.rb:15:in `update'
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/user_boards_controller.rb:15:in `update'
+Started GET "/user_boards" for ::1 at 2020-03-27 11:42:58 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 1015)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:42:58 -0500
+Completed 200 OK in 61ms (Views: 16.3ms | ActiveRecord: 3.4ms | Allocations: 14033)
+
+
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms | Allocations: 1218)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:44:02 -0500
+Processing by BoardsController#index as HTML
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.0ms | ActiveRecord: 0.4ms | Allocations: 3612)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:44:32 -0500
+Processing by MediaController#index as HTML
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1216)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:45:34 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:45:34 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.3ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 16ms (Views: 14.5ms | ActiveRecord: 0.8ms | Allocations: 3614)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:48:09 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:48:56 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:49:12 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:50:52 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:51:57 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:52:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.2ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:52:18 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.5ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 26ms (Views: 24.8ms | ActiveRecord: 1.0ms | Allocations: 3614)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:52:30 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:52:33 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.2ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.5ms | Allocations: 2861)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:52:42 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:53:19 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:53:46 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:55:23 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:55:34 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.2ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:55:34 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.5ms | Allocations: 3614)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:55:34 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.3ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 1431)
+
+
+Started GET "/user_boards" for ::1 at 2020-03-27 11:55:34 -0500
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.2ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Started GET "/media" for ::1 at 2020-03-27 11:55:34 -0500
+Completed 200 OK in 46ms (Views: 45.0ms | ActiveRecord: 0.2ms | Allocations: 1347)
+
+
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 1218)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:55:47 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:56:33 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:56:39 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:56:42 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:56:45 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:56:59 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.1ms | Allocations: 755)
+
+
+Started POST "/users/log_user_in" for ::1 at 2020-03-27 11:57:33 -0500
+Processing by UsersController#log_user_in as JSON
+  Parameters: {"name"=>"Jack Parker", "user"=>{"name"=>"Jack Parker"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "Jack Parker"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:26:in `log_user_in'
+Completed 200 OK in 2ms (Views: 0.6ms | ActiveRecord: 0.2ms | Allocations: 755)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:57:35 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 843)
+
+
+Started GET "/boards" for ::1 at 2020-03-27 11:57:35 -0500
+Processing by BoardsController#index as */*
+  [1m[36mBoard Load (0.1ms)[0m  [1m[34mSELECT "boards".* FROM "boards"[0m
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "user_boards" ON "users"."id" = "user_boards"."user_id" WHERE "user_boards"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+  [1m[36mMedia Load (0.1ms)[0m  [1m[34mSELECT "media".* FROM "media" WHERE "media"."board_id" = ?[0m  [["board_id", 1]]
+  ↳ app/controllers/boards_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 6.8ms | ActiveRecord: 0.4ms | Allocations: 3614)
+
+
+Started GET "/media" for ::1 at 2020-03-27 11:57:35 -0500
+Started GET "/user_boards" for ::1 at 2020-03-27 11:57:35 -0500
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.2ms | Allocations: 1331)
+
+
+Processing by UserBoardsController#index as */*
+  [1m[36mUserBoard Load (0.4ms)[0m  [1m[34mSELECT "user_boards".* FROM "user_boards"[0m
+  ↳ app/controllers/user_boards_controller.rb:4:in `index'
+Started GET "/media" for ::1 at 2020-03-27 11:57:35 -0500
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.4ms | Allocations: 1335)
+
+
+Processing by MediaController#index as */*
+  [1m[36mMedia Load (0.2ms)[0m  [1m[34mSELECT "media".* FROM "media"[0m
+  ↳ app/controllers/media_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.2ms | Allocations: 1218)
+
+
+Started GET "/friend_requests" for ::1 at 2020-03-27 11:57:38 -0500
+Processing by FriendRequestsController#index as */*
+  [1m[36mFriendRequest Load (0.3ms)[0m  [1m[34mSELECT "friend_requests".* FROM "friend_requests"[0m
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/friend_requests_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.4ms | Allocations: 2861)
+
+
+Started GET "/users" for ::1 at 2020-03-27 11:57:40 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms | Allocations: 843)
+
+
