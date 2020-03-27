@@ -150,34 +150,54 @@ function signOut(){
   location.reload()
   // currentUser ='';
 }
-function addPostForm(){
-  let boardDiv = el('board-form');
-
+function addPostForm(id){
+ let boardDiv = el('board-form');
   boardDiv.innerHTML = `<form id='post-data'>
-  <label for='title'> Title </label>
-  <input for='title' name='title' type='text'>
-  <label for='file'> Upload Board media </label>
-  <input id='img-input' type='file' name='file'>
-  <input type='submit' value='Submit Post'>
-  </form>
-  `;
+          <input for='id' type='hidden' name='id'>
+          <label for='title'> Title </label>
+          <input for='title' name='title' type='text'>
+          <label for='img'> Upload Image: </label>
+          <input id='img-input' type='text' name='img'>
+          <input type='submit' value='Submit Post'>
+
+  </form>`
+  // boardDiv.innerHTML = `<form id='post-data' action='http://localhost:3000/media'
+  //                         enctype='multipart/form-data'
+  //                         method='post'>
+  // <input for='id' type='hidden' name='id'>
+  // <label for='title'> Title </label>
+  // <input for='title' name='title' type='text'>
+  // <label for='file'> Upload Board media </label>
+  // <input id='img-input' type='file' name='file'>
+  // <input type='submit' value='Submit Post'>
+  // </form>
+  // `;
+  // el('post-data').id.value = id
   el('post-data').addEventListener('submit', (event)=>{
     event.preventDefault();
-    let title = event.target.children[1].value
+    let title = event.target.title.value
 
-    let media = event.target.children[3].value
-    addPost(title,media);
+    let boardId = id
+
+    let media = event.target.img.value
+    console.log(`Board Id: ${id}`)
+
+
+    addPost(title,media,boardId);
   })
   // add func to handle meia post requests
 }
-function addPost(postTitle,postMedia){
+function addPost(postTitle,img, id){
+  console.log(`title:${postTitle},img:${img},id:${id}`)
   fetch('http://localhost:3000/media', {
     method: 'POST',
     headers: headers,
     body: JSON.stringify({
       title: postTitle,
-      media: postMedia,
-      board_id: 1
-    })
+      // media: postMedia,
+      image: img,
+      board_id: id
+    }),
+
   })
 }

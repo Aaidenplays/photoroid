@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
           e.preventDefault();
            setu1ForBoard();
         });
-        el('friends-header').addEventListener("click",(e)=>{ 
+        el('friends-header').addEventListener("click",(e)=>{
           e.preventDefault();
           getFriends(e)});
-        el('users-header').addEventListener("click", (e) => { 
+        el('users-header').addEventListener("click", (e) => {
           e.preventDefault();
           getUsers(e.target.dataset.id);
         });
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             status: "accepted"
           })
         }).then(getFriends())
-        
+
       }
       const handleDeclineBtn = (target) => {
         fetch(`http://localhost:3000/friend_requests/${target}`, {
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
       }
       const postBoard = (user) => {
         const title = el('board-title');
-        const desc = el('board-description');      
+        const desc = el('board-description');
         const u1 = currentUser;
         fetch('http://localhost:3000/boards', {
           method: 'POST',
@@ -113,9 +113,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
           })
         }).then(resp => resp.json())
         .then(data => postUserBoard(data.id,u1))
-        
+
         //INSERT VIEW BOARD HERE
-        
+
       }
       const handleBoardSubmitBtn = (e) => {
         e.preventDefault();
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         body: JSON.stringify({
           id: userBoardId,
           status: "active"
-        }) 
+        })
       }).then(getBoards(currentUser));
       }
       const handleDeclineBoardRequestBtn = (userBoardId) => {
@@ -236,8 +236,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (iUser.id == user.id){
               /* creating elements */
               let li = document.createElement('li');
+              li.setAttribute('id', iBoard.id)
               let title = document.createElement('h1');
               let description = document.createElement('p');
+              let addPost = document.createElement('button'); // post add button
+                addPost.setAttribute('id','post-button');
+                addPost.innerText = 'Add Post';
+                addPost.addEventListener('click',()=>{
+
+                  addPostForm(iBoard.id);
+                });
+
                 /* invite button */
               let inviteBtn = document.createElement('button');
               inviteBtn.innerText = 'Invite Friend';
@@ -254,21 +263,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
               /* appending */
               li.append(title);
               li.append(description);
+              li.append(addPost);
               li.append(inviteBtn);
               container.append(li);
-            }            
-          })
+              if (iBoard.medias){
+                fetchImg(iBoard.id)
+                };
+
+          }
         })
+
 
         getUserBoardsForRequestsRendering();
           // Jack added: March 25th
-        el('new-user').innerHTML = `<button id='post-button'>Add Post</button>`
-        el('post-button').addEventListener('click',()=>{
-          el('new-user').innerHTML=''
-            addPostForm();
-        })
+        // el('new-user').innerHTML = `<button id='post-button'>Add Post</button>`
+        // el('post-button').addEventListener('click',()=>{
+        //   el('post-button').innerHTML=''
+        //     addPostForm();
+        // })
         // add post button and event listener for submiting form id is "post-data"
-      }
+      })
+    }
 
 
       const renderUserBoardRequests = (userBoards) => {
@@ -281,7 +296,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             let message = document.createElement('p')
             let acceptBoardRequestBtn = document.createElement('button');
             let declineBoardRequestBtn = document.createElement('button');
-            
+
             /* initialize variables */
             acceptBoardRequestBtn.dataset.userBoardId = userBoard.id;
             declineBoardRequestBtn.dataset.userBoardId = userBoard.id;
@@ -329,7 +344,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         data.forEach(request => {
           /* Accepted friends */
           if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'accepted'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
             let inviteBtn = document.createElement('button');
@@ -358,13 +373,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(inviteBtn);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            container.append(li); 
+            container.append(li);
           }
           else if ((request.requestor.id == u1.id || request.receiver.id == u1.id) && request.status == 'pending'){
-            let li = document.createElement('li'); 
+            let li = document.createElement('li');
             let name = document.createElement('h1');
             let bio = document.createElement('p');
-            
+
             /* buttons */
             let acceptBtn = document.createElement('button');
             acceptBtn.innerText = "Accept";
@@ -392,7 +407,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             li.append(bio);
             li.append(document.createElement('p'))
             li.append(document.createElement('p'))
-            pendingContainer.append(li); 
+            pendingContainer.append(li);
           }
         })
       }
@@ -439,4 +454,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
         .then(resp => resp.json())
         .then(data => renderUsers(data))
       }
+function fetchImg(id){
+  console.log(`this is the board ID: ${id}`)
+  fetch('http://localhost:3000/media')
+  .then(r=>r.json())
+  .then(json=>{
+    let divImg = el('image');
+    let img = document.createElement('img')
+    let obj = json.find( (elem) =>{
 
+      return elem.board_id === id
+    });
+    console.log(obj)
+    img.setAttribute('src', obj.image);
+    img.setAttribute('width', '180');
+    img.setAttribute('height', '180');
+    divImg.append(img);
+  })
+}
