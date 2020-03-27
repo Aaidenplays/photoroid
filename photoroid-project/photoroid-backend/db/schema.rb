@@ -57,7 +57,8 @@ ActiveRecord::Schema.define(version: 2020_03_25_183249) do
 
   create_table "media", force: :cascade do |t|
     t.string "title"
-    t.string "likes"
+    t.integer "likes"
+    t.string "image"
     t.integer "board_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

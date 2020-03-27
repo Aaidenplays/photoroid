@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
     def index
         boards =  Board.all
-        render json: boards, include: [:users]
+        render json: boards, include: [:users, :medias]
       end
 
     def create

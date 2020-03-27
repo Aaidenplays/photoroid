@@ -266,7 +266,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
               li.append(addPost);
               li.append(inviteBtn);
               container.append(li);
-              fetchImg(iBoard.id);
+              if (iBoard.medias){
+                fetchImg(iBoard.id)
+                };
 
           }
         })
@@ -464,7 +466,9 @@ function fetchImg(id){
       return elem.board_id === id
     });
     console.log(obj)
-    img.setAttribute('src', obj.media);
+    img.setAttribute('src', obj.image);
+    img.setAttribute('width', '180');
+    img.setAttribute('height', '180');
     divImg.append(img);
   })
 }

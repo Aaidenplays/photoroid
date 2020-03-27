@@ -1,14 +1,14 @@
 class MediaController < ApplicationController
     def index
         medias =  Media.all
-        render json: medias, include: medias.each{|i|i.media.as_json}
+
+        render json: medias
+        # @image = medias[-1]
     end
       def create
-          media = Media.create!(comments: [],likes: 0, title: params[:title], board_id: params[:id], media: params[:file])
-
-
-
-
+          media = Media.new(likes: 0, title: params[:title], board_id: params[:board_id].to_i, image: params[:image])
+          media.save
+          render json: media
 
       end
 end
